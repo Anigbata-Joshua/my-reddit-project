@@ -1,17 +1,33 @@
 import { Link, useLocation, NavLink } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
-import { communities } from '../../data/mockData';
+import { ChevronDown, Menu, X } from 'lucide-react';
+import { useCommunityStore } from '../../store/communityStore'; 
 import { sidebarLinks, resources, resources2, resources3 } from '../../data/links';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Sidebar() {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
 
-  // Checks active status by matching the current URL path
+  // Toggle states for collapsible sections
+  const [showCommunities, setShowCommunities] = useState(true);
+  const [showResources, setShowResources] = useState(true);
+  const [showExplore, setShowExplore] = useState(true);
+  const [showPolicies, setShowPolicies] = useState(true);
+
+
+  const { communities, fetchCommunities } = useCommunityStore();
+
+useEffect(() => {
+    fetchCommunities();
+}, []);
+
+  // Checks active status 
   const linkClass = (active) =>
     `flex items-center gap-3 px-3 py-2 rounded-full text-sm font-medium hover:bg-black/5 transition-colors ${active ? 'bg-black/5 font-bold text-black' : 'text-gray-700'
     }`;
+
+  // Shared subheader styling with chevron rotation animation
+  const subheaderClass = "flex items-center justify-between w-full text-xs font-bold text-gray-500 uppercase px-3 py-2 border-t border-gray-200 pt-4 mt-2 cursor-pointer select-none group hover:text-black transition-colors";
 
   return (
     <>
@@ -38,10 +54,9 @@ export default function Sidebar() {
         md:sticky md:top-14 md:h-[calc(100vh-3.5rem)] md:translate-x-0 md:z-0 md:block
         fixed top-0 left-0 h-full z-45 transition-transform duration-300 ease-in-out
         ${isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
-        overflow-y-auto
-      `}>
+        overflow-y-auto`}>
 
-        {/*Primary Navigation */}
+        {/* Primary Navigation */}
         <nav className="mb-4 pt-14 md:pt-0 flex flex-col gap-0.5">
           {sidebarLinks.map(({ to, icon, label }) => (
             <NavLink
@@ -55,83 +70,123 @@ export default function Sidebar() {
           ))}
         </nav>
 
-        {/*Communities Section */}
-        <div className="mb-4 flex flex-col gap-0.5">
-          <div className="text-xs font-bold text-gray-500 uppercase px-3 py-2 border-t border-gray-200 pt-4 mt-2">
-            Communities
+        {/* Communities Section */}
+        <div className="mb-4 flex flex-col">
+          <button
+            onClick={() => setShowCommunities(!showCommunities)}
+            className={subheaderClass}
+          >
+            <span>Communities</span>
+            <ChevronDown size={14} className={`transform transition-transform duration-200 ${showCommunities ? '' : '-rotate-180'}`} />
+          </button>
+
+          <div className={`grid transition-all duration-200 ease-in-out ${showCommunities ? 'grid-rows-[1fr] opacity-100 mt-0.5' : 'grid-rows-[0fr] opacity-0 pointer-events-none'}`}>
+            <div className="overflow-hidden flex flex-col gap-0.5">
+              {communities.map((c) => {
+                const communityPath = `/r/${c.name}`;
+                return (
+                  <Link
+                    key={c.communityId}
+                    to={communityPath}
+                    onClick={() => setIsOpen(false)}
+                    className={linkClass(location.pathname === communityPath)}
+                  >
+                    <span className="w-5 h-5 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold shrink-0">
+                      {c.name[0].toUpperCase()}
+                    </span>
+                    <span className="truncate">{c.name}</span>
+                  </Link>
+                );
+              })}
+            </div>
           </div>
-          {communities.map((c) => {
-            const communityPath = `/r/${c.name}`;
-            return (
-              <Link
-                key={c.id}
-                to={communityPath}
-                onClick={() => setIsOpen(false)}
-                className={linkClass(location.pathname === communityPath)}
-              >
-                <span className="w-5 h-5 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold shrink-0">
-                  {c.name[0].toUpperCase()}
-                </span>
-                <span className="truncate">r/{c.name}</span>
-              </Link>
-            );
-          })}
         </div>
 
         {/* SECTION 3: Resources Section */}
-        <div className="mb-4 flex flex-col gap-0.5">
-          <div className="text-xs font-bold text-gray-500 uppercase px-3 py-2 border-t border-gray-200 pt-4 mt-2">
-            Resources
+        <div className="mb-4 flex flex-col">
+          <button
+            onClick={() => setShowResources(!showResources)}
+            className={subheaderClass}
+          >
+            <span>Resources</span>
+            <ChevronDown size={14} className={`transform transition-transform duration-200 ${showResources ? '' : '-rotate-180'}`} />
+          </button>
+
+          <div className={`grid transition-all duration-200 ease-in-out ${showResources ? 'grid-rows-[1fr] opacity-100 mt-0.5' : 'grid-rows-[0fr] opacity-0 pointer-events-none'}`}>
+            <div className="overflow-hidden flex flex-col gap-0.5">
+              {resources.map(({ to, label, icon }) => (
+                <Link
+                  key={label}
+                  to={to}
+                  onClick={() => setIsOpen(false)}
+                  className={linkClass(location.pathname === to)}
+                >
+                  {icon}
+                  <span className="truncate">{label}</span>
+                </Link>
+              ))}
+            </div>
           </div>
-          {resources.map(({ to, label, icon }) => (
-            <Link
-              key={label}
-              to={to}
-              onClick={() => setIsOpen(false)}
-              className={linkClass(location.pathname === to)}
-            >
-              {icon}
-              <span className="truncate">{label}</span>
-            </Link>
-          ))}
         </div>
 
         {/* SECTION 4: Explore (Best of Reddit) */}
-        <div className="mb-4 flex flex-col gap-0.5">
-          <div className="text-xs font-bold text-gray-500 uppercase px-3 py-2 border-t border-gray-200 pt-4 mt-2">
-            Explore
+        <div className="mb-4 flex flex-col">
+          <button
+            onClick={() => setShowExplore(!showExplore)}
+            className={subheaderClass}
+          >
+            <span className=''>Explore</span>
+            <ChevronDown size={14} className={`transform transition-transform duration-200 ${showExplore ? '' : '-rotate-180'}`} />
+          </button>
+
+          <div className={`grid transition-all duration-200 ease-in-out ${showExplore ? 'grid-rows-[1fr] opacity-100 mt-0.5' : 'grid-rows-[0fr] opacity-0 pointer-events-none'}`}>
+            <div className="overflow-hidden flex flex-col gap-0.5">
+              {resources2.map(({ to, label, icon }) => (
+                <Link
+                  key={label}
+                  to={to}
+                  onClick={() => setIsOpen(false)}
+                  className={linkClass(location.pathname === to)}
+                >
+                  {icon}
+                  <span className="truncate">{label}</span>
+                </Link>
+              ))}
+            </div>
           </div>
-          {resources2.map(({ to, label, icon }) => (
-            <Link
-              key={label}
-              to={to}
-              onClick={() => setIsOpen(false)}
-              className={linkClass(location.pathname === to)}
-            >
-              {icon}
-              <span className="truncate">{label}</span>
-            </Link>
-          ))}
         </div>
 
-        {/* SECTION 5: Terms & Policies */}
-        <div className="mb-4 flex flex-col gap-0.5">
-          <div className="text-xs font-bold text-gray-500 uppercase px-3 py-2 border-t border-gray-200 pt-4 mt-2">
-            Terms & Policies
-          </div>
-          {resources3.map(({ to, label, icon }) => (
-            <Link
-              key={label}
-              to={to}
-              onClick={() => setIsOpen(false)}
-              className={linkClass(location.pathname === to)}
-            >
-              {icon}
-              <span className="truncate">{label}</span>
-            </Link>
-          ))}
-        </div>
+        {/*Terms & Policies */}
+        <div className="mb-4 flex flex-col">
+          <button
+            onClick={() => setShowPolicies(!showPolicies)}
+            className={subheaderClass}
+          >
+            <span>Terms & Policies</span>
+            <ChevronDown size={14} className={`transform transition-transform duration-200 ${showPolicies ? '' : '-rotate-180'}`} />
+          </button>
 
+          <div className={`grid transition-all duration-200 ease-in-out ${showPolicies ? 'grid-rows-[1fr] opacity-100 mt-0.5' : 'grid-rows-[0fr] opacity-0 pointer-events-none'}`}>
+            <div className="overflow-hidden flex flex-col gap-0.5">
+              {resources3.map(({ to, label, icon }) => (
+                <Link
+                  key={label}
+                  to={to}
+                  onClick={() => setIsOpen(false)}
+                  className={linkClass(location.pathname === to)}
+                >
+                  {icon}
+                  <span className="truncate">{label}</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      <footer className="mt-auto pt-4">
+        <span className="text-[10px] text-gray-500 tracking-wide block">
+          Reddit, Inc. © 2026. All rights reserved.
+        </span>
+      </footer>
       </aside>
     </>
   );

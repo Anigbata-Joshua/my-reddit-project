@@ -1,5 +1,9 @@
-export default function LoginPage() {
+import AuthForm from "../components/auth/AuthForm";
+
+export default function LoginPage({ initialMode = 'login' }) {
   return (
-    <div>LoginPage placeholder</div>
+    <div>
+      <AuthForm initialMode={initialMode} />
+    </div>
   );
 }

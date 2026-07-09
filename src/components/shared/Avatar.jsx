@@ -1,5 +1,8 @@
-export default function Avatar() {
+import defaultImg from '../../assets/images.jpg';
+
+export default function Avatar({ src, alt = 'avatar', className = '' }) {
+  const imgSrc = src || defaultImg;
   return (
-    <div>Avatar placeholder</div>
+    <img src={imgSrc} alt={alt} className={"object-cover " + className} />
   );
 }

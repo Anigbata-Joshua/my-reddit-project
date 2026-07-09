@@ -1,3 +1,5 @@
+import { Volleyball } from "lucide-react";
+
 //─ USERS ─
 export const users = [
   { id: 'u1',  username: 'kelechi_abara',    avatar: null, karma: 14320, bio: 'Football forever. Lagos to London.' },
@@ -25,74 +27,74 @@ export const users = [
 // ─ COMMUNITIES ──
 export const communities = [
   // World Cup 2026
-  { id: 'c1',  name: 'WorldCup2026',         description: 'The home of FIFA World Cup 2026 discussion. USA, Canada & Mexico hosting.',              memberCount: 4200000, category: 'Sports' },
-  { id: 'c2',  name: 'SoccerTactics',        description: 'Deep dives into formations, pressing, set pieces and match analysis.',                   memberCount: 890000,  category: 'Sports' },
-  { id: 'c3',  name: 'FootballTransfers',    description: 'Transfer rumors, done deals and contract news from around the world.',                   memberCount: 2100000, category: 'Sports' },
-  // Fashion & Streetwear
-  { id: 'c4',  name: 'Streetwear',           description: 'The latest drops, fits, and culture from Supreme to Corteiz and beyond.',               memberCount: 1750000, category: 'Fashion' },
-  { id: 'c5',  name: 'HighFashion',          description: 'Runway looks, designer discussions, and fashion week coverage.',                        memberCount: 620000,  category: 'Fashion' },
-  { id: 'c6',  name: 'Sneakers',             description: 'Copping, collecting, and discussing kicks from every era.',                             memberCount: 3100000, category: 'Fashion' },
+  // { id: 'c1',  name: 'WorldCup2026',        description: 'The home of FIFA World Cup 2026 discussion. USA, Canada & Mexico hosting.',             memberCount: 4200000, category: 'Sports', image: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=500&auto=format&fit=crop&q=60' },
+  // { id: 'c2',  name: 'SoccerTactics',       description: 'Deep dives into formations, pressing, set pieces and match analysis.',                   memberCount: 890000,  category: 'Sports', image: 'https://images.unsplash.com/photo-1543326727-cf6c39e8f84c?w=500&auto=format&fit=crop&q=60' },
+  // { id: 'c3',  name: 'FootballTransfers',   description: 'Transfer rumors, done deals and contract news from around the world.',                   memberCount: 2100000, category: 'Sports', image: 'https://images.unsplash.com/photo-1518144591331-17a5dd71c477?w=500&auto=format&fit=crop&q=60' },
+  // // Fashion & Streetwear
+  { id: 'c4',  name: 'Streetwear',          description: 'The latest drops, fits, and culture from Supreme to Corteiz and beyond.',               memberCount: 1750000, category: 'Fashion', image: 'https://images.unsplash.com/photo-1516257984-b1b4d707412e?w=500&auto=format&fit=crop&q=60' },
+  { id: 'c5',  name: 'HighFashion',         description: 'Runway looks, designer discussions, and fashion week coverage.',                        memberCount: 620000,  category: 'Fashion', image: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=500&auto=format&fit=crop&q=60' },
+  { id: 'c6',  name: 'Sneakers',            description: 'Copping, collecting, and discussing kicks from every era.',                             memberCount: 3100000, category: 'Fashion', image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&auto=format&fit=crop&q=60' },
   // Movies & Netflix
-  { id: 'c7',  name: 'NetflixBestOf',        description: 'Recommendations, hidden gems, and debates about what to watch next.',                   memberCount: 2400000, category: 'Entertainment' },
-  { id: 'c8',  name: 'Oscars2026',           description: 'Predictions, snubs, and discussion for awards season 2026.',                           memberCount: 480000,  category: 'Entertainment' },
-  { id: 'c9',  name: 'MovieDetails',         description: 'Easter eggs, cinematography breakdowns, and hidden moments in film.',                   memberCount: 5100000, category: 'Entertainment' },
+  { id: 'c7',  name: 'NetflixBestOf',       description: 'Recommendations, hidden gems, and debates about what to watch next.',                   memberCount: 2400000, category: 'Entertainment', image: 'https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=500&auto=format&fit=crop&q=60' },
+  { id: 'c8',  name: 'Oscars2026',          description: 'Predictions, snubs, and discussion for awards season 2026.',                           memberCount: 480000,  category: 'Entertainment', image: 'https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=500&auto=format&fit=crop&q=60' },
+  { id: 'c9',  name: 'MovieDetails',        description: 'Easter eggs, cinematography breakdowns, and hidden moments in film.',                   memberCount: 5100000, category: 'Entertainment', image: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=500&auto=format&fit=crop&q=60' },
   // Afrobeats & Music
-  { id: 'c10', name: 'Afrobeats',            description: 'Burna Boy, Wizkid, Tems, and the global rise of African music.',                       memberCount: 980000,  category: 'Music' },
-  { id: 'c11', name: 'MusicProduction',      description: 'Beats, DAWs, plugins and the craft behind the music.',                                 memberCount: 740000,  category: 'Music' },
-  { id: 'c12', name: 'HipHopHeads',          description: 'Hip hop culture, lyrics, history and new releases.',                                   memberCount: 4500000, category: 'Music' },
+  { id: 'c10', name: 'Afrobeats',            description: 'Burna Boy, Wizkid, Tems, and the global rise of African music.',                       memberCount: 980000,  category: 'Music', image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=500&auto=format&fit=crop&q=60' },
+  { id: 'c11', name: 'MusicProduction',      description: 'Beats, DAWs, plugins and the craft behind the music.',                                 memberCount: 740000,  category: 'Music', image: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=500&auto=format&fit=crop&q=60' },
+  { id: 'c12', name: 'HipHopHeads',          description: 'Hip hop culture, lyrics, history and new releases.',                                   memberCount: 4500000, category: 'Music', image: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=500&auto=format&fit=crop&q=60' },
   // Travel
-  { id: 'c13', name: 'TravelHacks',          description: 'Budget tips, points hacks and how to travel smarter and cheaper.',                     memberCount: 2800000, category: 'Travel' },
-  { id: 'c14', name: 'SoloTravel',           description: 'Going it alone around the world. Stories, tips, and safety advice.',                   memberCount: 1200000, category: 'Travel' },
-  { id: 'c15', name: 'DigitalNomad',         description: 'Work from anywhere. Visas, co-working spots, and remote work life.',                   memberCount: 960000,  category: 'Travel' },
+  { id: 'c13', name: 'TravelHacks',          description: 'Budget tips, points hacks and how to travel smarter and cheaper.',                     memberCount: 2800000, category: 'Travel', image: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=500&auto=format&fit=crop&q=60' },
+  { id: 'c14', name: 'SoloTravel',           description: 'Going it alone around the world. Stories, tips, and safety advice.',                   memberCount: 1200000, category: 'Travel', image: 'https://images.unsplash.com/photo-1501555088652-021faa106b9b?w=500&auto=format&fit=crop&q=60' },
+  { id: 'c15', name: 'DigitalNomad',         description: 'Work from anywhere. Visas, co-working spots, and remote work life.',                   memberCount: 960000,  category: 'Travel', image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=500&auto=format&fit=crop&q=60' },
   // Food
-  { id: 'c16', name: 'FoodPorn',             description: 'Drool-worthy food photography and recipes from around the world.',                     memberCount: 6200000, category: 'Food' },
-  { id: 'c17', name: 'WestAfricanCooking',   description: 'Jollof, egusi, suya, pounded yam and all the classics.',                              memberCount: 340000,  category: 'Food' },
-  { id: 'c18', name: 'HomeBarista',          description: 'Espresso dialing, latte art, and the pursuit of the perfect cup.',                     memberCount: 880000,  category: 'Coffee' },
+  { id: 'c16', name: 'FoodPorn',             description: 'Drool-worthy food photography and recipes from around the world.',                     memberCount: 6200000, category: 'Food', image: 'https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=500&auto=format&fit=crop&q=60' },
+  { id: 'c17', name: 'WestAfricanCooking',   description: 'Jollof, egusi, suya, pounded yam and all the classics.',                              memberCount: 340000,  category: 'Food', image: 'https://images.unsplash.com/photo-1604328698692-f76ea9498e76?w=500&auto=format&fit=crop&q=60' },
+  { id: 'c18', name: 'HomeBarista',          description: 'Espresso dialing, latte art, and the pursuit of the perfect cup.',                     memberCount: 880000,  category: 'Coffee', image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=500&auto=format&fit=crop&q=60' },
   // Cars
-  { id: 'c19', name: 'Cars',                 description: 'Everything automotive: reviews, mods, track days, and dream builds.',                  memberCount: 3400000, category: 'Cars' },
-  { id: 'c20', name: 'ElectricVehicles',     description: 'The EV revolution. Range, charging, and the future of driving.',                      memberCount: 1100000, category: 'Cars' },
-  { id: 'c21', name: 'JDM',                  description: 'Japanese domestic market legends. R34, NSX, Supra and more.',                         memberCount: 780000,  category: 'Cars' },
+  { id: 'c19', name: 'Cars',                 description: 'Everything automotive: reviews, mods, track days, and dream builds.',                  memberCount: 3400000, category: 'Cars', image: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=500&auto=format&fit=crop&q=60' },
+  { id: 'c20', name: 'ElectricVehicles',     description: 'The EV revolution. Range, charging, and the future of driving.',                      memberCount: 1100000, category: 'Cars', image: 'https://images.unsplash.com/photo-1563720223185-11003d516935?w=500&auto=format&fit=crop&q=60' },
+  { id: 'c21', name: 'JDM',                  description: 'Japanese domestic market legends. R34, NSX, Supra and more.',                         memberCount: 780000,  category: 'Cars', image: 'https://images.unsplash.com/photo-1616422285623-13ff0162193c?w=500&auto=format&fit=crop&q=60' },
   // Photography
-  { id: 'c22', name: 'StreetPhotography',    description: 'Candid, raw, and urban. The art of capturing life in public.',                        memberCount: 1400000, category: 'Photography' },
-  { id: 'c23', name: 'SonyAlpha',            description: 'Sony mirrorless cameras, lenses, and tips for Alpha shooters.',                       memberCount: 560000,  category: 'Photography' },
-  { id: 'c24', name: 'AnalogPhotography',    description: 'Film cameras, darkrooms, and the magic of shooting on film.',                         memberCount: 430000,  category: 'Photography' },
+  { id: 'c22', name: 'StreetPhotography',    description: 'Candid, raw, and urban. The art of capturing life in public.',                        memberCount: 1400000, category: 'Photography', image: 'https://images.unsplash.com/photo-1514565131-fce0801e5785?w=500&auto=format&fit=crop&q=60' },
+  { id: 'c23', name: 'SonyAlpha',            description: 'Sony mirrorless cameras, lenses, and tips for Alpha shooters.',                       memberCount: 560000,  category: 'Photography', image: 'https://images.unsplash.com/photo-1610940424261-38f0d30094b2?w=500&auto=format&fit=crop&q=60' },
+  { id: 'c24', name: 'AnalogPhotography',    description: 'Film cameras, darkrooms, and the magic of shooting on film.',                         memberCount: 430000,  category: 'Photography', image: 'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=500&auto=format&fit=crop&q=60' },
   // Fitness
-  { id: 'c25', name: 'Fitness',              description: 'Training, nutrition, recovery and achieving your physical best.',                      memberCount: 7800000, category: 'Fitness' },
-  { id: 'c26', name: 'Calisthenics',         description: 'Bodyweight mastery. Planche, front lever, muscle-ups and more.',                      memberCount: 620000,  category: 'Fitness' },
-  { id: 'c27', name: 'RunningClub',          description: 'Marathon prep, 5K PBs, trail running and everything in between.',                     memberCount: 1900000, category: 'Fitness' },
+  { id: 'c25', name: 'Fitness',              description: 'Training, nutrition, recovery and achieving your physical best.',                      memberCount: 7800000, category: 'Fitness', image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=500&auto=format&fit=crop&q=60' },
+  { id: 'c26', name: 'Calisthenics',         description: 'Bodyweight mastery. Planche, front lever, muscle-ups and more.',                      memberCount: 620000,  category: 'Fitness', image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500&auto=format&fit=crop&q=60' },
+  { id: 'c27', name: 'RunningClub',          description: 'Marathon prep, 5K PBs, trail running and everything in between.',                     memberCount: 1900000, category: 'Fitness', image: 'https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=500&auto=format&fit=crop&q=60' },
   // Space
-  { id: 'c28', name: 'Space',                description: 'Launches, discoveries, missions and the future of humanity among the stars.',          memberCount: 5500000, category: 'Science' },
-  { id: 'c29', name: 'SpaceX',               description: 'Starship, Falcon 9, Starlink and everything Elon launches into orbit.',               memberCount: 2100000, category: 'Science' },
-  { id: 'c30', name: 'Astronomy',            description: 'Astrophotography, star maps, and the wonders of the night sky.',                      memberCount: 1300000, category: 'Science' },
+  { id: 'c28', name: 'Space',                description: 'Launches, discoveries, missions and the future of humanity among the stars.',          memberCount: 5500000, category: 'Science', image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500&auto=format&fit=crop&q=60' },
+  { id: 'c29', name: 'SpaceX',               description: 'Starship, Falcon 9, Starlink and everything Elon launches into orbit.',               memberCount: 2100000, category: 'Science', image: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?w=500&auto=format&fit=crop&q=60' },
+  { id: 'c30', name: 'Astronomy',            description: 'Astrophotography, star maps, and the wonders of the night sky.',                      memberCount: 1300000, category: 'Science', image: 'https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?w=500&auto=format&fit=crop&q=60' },
   // Sports
-  { id: 'c31', name: 'NBA',                  description: 'The world\'s best basketball league. Game threads, trades, and hot takes.',            memberCount: 8900000, category: 'Sports' },
-  { id: 'c32', name: 'Athletics',            description: '100m to marathon, field events, and track & field breaking news.',                    memberCount: 450000,  category: 'Sports' },
-  { id: 'c33', name: 'Tennis',               description: 'Grand Slams, ATP, WTA and the greatest sport ever played.',                           memberCount: 1200000, category: 'Sports' },
+  { id: 'c31', name: 'NBA',                  description: "The world's best basketball league. Game threads, trades, and hot takes.",            memberCount: 8900000, category: 'Sports', image: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=500&auto=format&fit=crop&q=60' },
+  { id: 'c32', name: 'Athletics',            description: '100m to marathon, field events, and track & field breaking news.',                    memberCount: 450000,  category: 'Sports', image: 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=500&auto=format&fit=crop&q=60' },
+  { id: 'c33', name: 'Tennis',               description: 'Grand Slams, ATP, WTA and the greatest sport ever played.',                           memberCount: 1200000, category: 'Sports', image: 'https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?w=500&auto=format&fit=crop&q=60' },
   // Finance
-  { id: 'c34', name: 'PersonalFinance',      description: 'Budgets, savings, investing and taking control of your financial future.',            memberCount: 14000000, category: 'Finance' },
-  { id: 'c35', name: 'CryptoCurrency',       description: 'Bitcoin, Ethereum and the ever-wild world of digital assets.',                       memberCount: 4300000, category: 'Finance' },
-  { id: 'c36', name: 'StockMarket',          description: 'Equities, ETFs, dividends and long-term investing strategies.',                       memberCount: 3800000, category: 'Finance' },
+  { id: 'c34', name: 'PersonalFinance',      description: 'Budgets, savings, investing and taking control of your financial future.',            memberCount: 14000000, category: 'Finance', image: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=500&auto=format&fit=crop&q=60' },
+  { id: 'c35', name: 'CryptoCurrency',       description: 'Bitcoin, Ethereum and the ever-wild world of digital assets.',                       memberCount: 4300000, category: 'Finance', image: 'https://images.unsplash.com/photo-1516245834210-c4c142787335?w=500&auto=format&fit=crop&q=60' },
+  { id: 'c36', name: 'StockMarket',          description: 'Equities, ETFs, dividends and long-term investing strategies.',                       memberCount: 3800000, category: 'Finance', image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=500&auto=format&fit=crop&q=60' },
   // Shopping
-  { id: 'c37', name: 'BuyItForLife',         description: 'Quality products worth the investment. Built to last forever.',                       memberCount: 2200000, category: 'Shopping' },
-  { id: 'c38', name: 'Frugal',               description: 'Getting the most for your money without sacrificing quality.',                        memberCount: 1600000, category: 'Shopping' },
-  { id: 'c39', name: 'AmazonDeals',          description: 'The best deals, discounts, and hidden finds on Amazon right now.',                    memberCount: 3100000, category: 'Shopping' },
+  { id: 'c37', name: 'BuyItForLife',         description: 'Quality products worth the investment. Built to last forever.',                       memberCount: 2200000, category: 'Shopping', image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=500&auto=format&fit=crop&q=60' },
+  { id: 'c38', name: 'Frugal',               description: 'Getting the most for your money without sacrificing quality.',                        memberCount: 1600000, category: 'Shopping', image: 'https://images.unsplash.com/photo-1534452203293-494d7ddbf7e0?w=500&auto=format&fit=crop&q=60' },
+  { id: 'c39', name: 'AmazonDeals',          description: 'The best deals, discounts, and hidden finds on Amazon right now.',                    memberCount: 3100000, category: 'Shopping', image: 'https://images.unsplash.com/photo-1523474253046-8cd2748b5fd2?w=500&auto=format&fit=crop&q=60' },
   // Coffee
-  { id: 'c40', name: 'Coffee',               description: 'From bean to cup. Brewing methods, origins, and cafe culture worldwide.',             memberCount: 1800000, category: 'Coffee' },
-  { id: 'c41', name: 'CoffeeRoasting',       description: 'Home roasting, green bean sourcing and the science of the roast.',                   memberCount: 240000,  category: 'Coffee' },
+  { id: 'c40', name: 'Coffee',               description: 'From bean to cup. Brewing methods, origins, and cafe culture worldwide.',             memberCount: 1800000, category: 'Coffee', image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=500&auto=format&fit=crop&q=60' },
+  { id: 'c41', name: 'CoffeeRoasting',       description: 'Home roasting, green bean sourcing and the science of the roast.',                   memberCount: 240000,  category: 'Coffee', image: 'https://images.unsplash.com/photo-1511537190424-bbbab87ac5eb?w=500&auto=format&fit=crop&q=60' },
   // Gaming
-  { id: 'c42', name: 'Gaming',               description: 'All platforms, all genres. The biggest gaming community on reddit.',                  memberCount: 32000000, category: 'Gaming' },
-  { id: 'c43', name: 'PS6',                  description: 'PlayStation 6 news, games, specs, and everything Sony.',                             memberCount: 1400000, category: 'Gaming' },
-  { id: 'c44', name: 'IndieGaming',          description: 'Hidden gems and indie masterpieces worth your time and money.',                       memberCount: 890000,  category: 'Gaming' },
+  { id: 'c42', name: 'Gaming',               description: 'All platforms, all genres. The biggest gaming community on reddit.',                  memberCount: 32000000, category: 'Gaming', image: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=500&auto=format&fit=crop&q=60' },
+  { id: 'c43', name: 'PS6',                  description: 'PlayStation 6 news, games, specs, and everything Sony.',                             memberCount: 1400000, category: 'Gaming', image: 'https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=500&auto=format&fit=crop&q=60' },
+  { id: 'c44', name: 'IndieGaming',          description: 'Hidden gems and indie masterpieces worth your time and money.',                       memberCount: 890000,  category: 'Gaming', image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&auto=format&fit=crop&q=60' },
   // Camping
-  { id: 'c45', name: 'Camping',              description: 'Gear, sites, tips and campfire stories for outdoor enthusiasts.',                     memberCount: 2100000, category: 'Outdoors' },
-  { id: 'c46', name: 'Ultralight',           description: 'Gram-counting, gear reviews and going further with less weight.',                     memberCount: 380000,  category: 'Outdoors' },
+  { id: 'c45', name: 'Camping',              description: 'Gear, sites, tips and campfire stories for outdoor enthusiasts.',                     memberCount: 2100000, category: 'Outdoors', image: 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=500&auto=format&fit=crop&q=60' },
+  { id: 'c46', name: 'Ultralight',           description: 'Gram-counting, gear reviews and going further with less weight.',                     memberCount: 380000,  category: 'Outdoors', image: 'https://images.unsplash.com/photo-1622560480605-d83c853bc5c3?w=500&auto=format&fit=crop&q=60' },
   // Books
-  { id: 'c47', name: 'books',                description: 'What are you reading? Reviews, recommendations and literary discussion.',             memberCount: 6700000, category: 'Books' },
-  { id: 'c48', name: 'SciFiBooks',           description: 'Science fiction from golden age classics to today\'s best authors.',                 memberCount: 980000,  category: 'Books' },
+  { id: 'c47', name: 'books',                description: 'What are you reading? Reviews, recommendations and literary discussion.',             memberCount: 6700000, category: 'Books', image: 'https://images.unsplash.com/photo-1495640388908-05fa85288e61?w=500&auto=format&fit=crop&q=60' },
+  { id: 'c48', name: 'SciFiBooks',           description: "Science fiction from golden age classics to today's best authors.",                 memberCount: 980000,  category: 'Books', image: 'https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?w=500&auto=format&fit=crop&q=60' },
   // Pets
-  { id: 'c49', name: 'dogs',                 description: 'The biggest, fluffiest, and most wholesome community on the internet.',              memberCount: 11000000, category: 'Pets' },
+  { id: 'c49', name: 'dogs',                 description: 'The biggest, fluffiest, and most wholesome community on the internet.',              memberCount: 11000000, category: 'Pets', image: 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=500&auto=format&fit=crop&q=60' },
   // Nature
-  { id: 'c50', name: 'EarthPorn',            description: 'High-quality images of Earth\'s landscapes to make you want to go outside.',         memberCount: 21000000, category: 'Nature' },
+  { id: 'c50', name: 'EarthPorn',            description: "High-quality images of Earth's landscapes to make you want to go outside.",         memberCount: 21000000, category: 'Nature', image: 'https://images.unsplash.com/photo-1472214222541-d510753a8707?w=500&auto=format&fit=crop&q=60' },
 ];
 
 //─ POSTS ─
@@ -133,7 +135,7 @@ export const posts = [
     id: 'p6',
     title: 'Nike Air Max Dn2 vs Adidas Adistar — which silhouette is actually winning 2026?',
     body: 'Both dropped this quarter and I\'ve been rotating them. The Dn2 is more wearable but the Adistar has the better colourways IMO. Thoughts?',
-    author: 'chen_wei', communityId: 'c6', votes: 5600, commentCount: 312, createdAt: '2026-06-01T11:30:00Z',
+    author: 'chen_wei', communityId: 'c6', votes: 5600, commentCount: 312, createdAt: '2026-07-01T11:30:00Z',
   },
   // Movies & Netflix
   {

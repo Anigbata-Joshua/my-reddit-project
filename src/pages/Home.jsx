@@ -1,14 +1,23 @@
-import { useState } from 'react';
+import { useEffect, useState,  } from 'react';
+import { usePostStore } from '../store/postStore';
+import { useCommunityStore } from '../store/communityStore';
 import PostList from '../components/post/PostList';
-import { posts as mockPosts } from '../data/mockData';
 
 export default function Home() {
-  const [tab, setTab] = useState('forYou');
+const { posts, loading, fetchPosts } = usePostStore();
+const { fetched: communitiesFetched, fetchCommunities } = useCommunityStore();
+const [tab, setTab] = useState('forYou');
+useEffect(() => {
+    fetchPosts();
+    if (!communitiesFetched) fetchCommunities();
+}, []);
 
   const tabClass = (active) =>
     `font-bold text-sm py-2 border-b-2 ${
       active ? 'text-gray-900 border-gray-900' : 'text-gray-500 border-transparent'
     }`;
+
+    if (loading) return <p className="text-center text-gray-500 mt-10">Loading posts...</p>
 
   return (
     <>
@@ -20,7 +29,7 @@ export default function Home() {
           Following
         </button>
       </div>
-      <PostList posts={mockPosts} />
+      <PostList posts={posts} />
     </>
   );
 }

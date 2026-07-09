@@ -8,7 +8,7 @@ export default function RecentPostsWidget({ posts }) {
         <span className="text-xs font-bold text-blue-600 cursor-pointer">Clear</span>
       </div>
       {posts.map((post, i) => (
-        <div key={post.id} className={`flex gap-2 py-2 ${i > 0 ? 'border-t border-gray-200' : ''}`}>
+        <div key={post.postId} className={`flex gap-2 py-2 ${i > 0 ? 'border-t border-gray-200' : ''}`}>
           <div className="flex-1">
             <div className="text-[11px] text-gray-500">
               {formatDistanceToNow(new Date(post.createdAt))} ago
