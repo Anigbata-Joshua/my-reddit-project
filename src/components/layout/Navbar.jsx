@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Sparkles, Bell, SquarePlus, MessageCircleMore } from 'lucide-react';
 import logo from "../../assets/images.jpg";
-import UserProfileDropdown from '../modals/UserProfileDropdown';
+import ProfileDropdown from '../modals/ProfileDropdown';
 
 export default function Navbar() {
   return (
@@ -72,7 +72,7 @@ export default function Navbar() {
           </div>
 
           <div className='ml-1'>
-            <UserProfileDropdown />
+            <ProfileDropdown />
           </div>
         </div>
       </div>

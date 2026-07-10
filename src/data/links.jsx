@@ -1,16 +1,16 @@
 import {
     Accessibility, BookOpenText, BriefcaseBusiness, CircleArrowOutUpRight,
-    CircleQuestionMark, Clock3, Compass, Hexagon, Home, Languages, LucideMicVocal,
-    Megaphone, Mic, MicVocal, MicVocalIcon, Newspaper, Plus, Rocket, User2Icon
+    CircleQuestionMark, Clock3, Compass, Hexagon, Home, Languages,
+    Megaphone, MicVocal, Newspaper, Plus, Rocket, User2Icon
 } from "lucide-react";
-
 
 export const sidebarLinks = [
     { to: "/", icon: <Home size={20} />, label: "Home" },
     { to: "/popular", icon: <CircleArrowOutUpRight size={20} />, label: "Popular" },
     { to: "/news", icon: <Newspaper size={20} />, label: "News" },
     { to: "/explore", icon: <Compass size={20} />, label: "Explore" },
-    { to: "/create-community", icon: <Plus size={20} />, label: "Start a community" }
+    // Removed 'to' and added 'isModalTrigger: true'
+    { icon: <Plus size={20} />, label: "Start a community", isModalTrigger: true }
 ];
 
 export const resources = [
@@ -22,13 +22,14 @@ export const resources = [
     { to: '#', label: "Blog", icon: <BookOpenText size={20} /> },
     { to: '#', label: "Careers", icon: <BriefcaseBusiness size={20} /> },
     { to: '#', label: "Press", icon: <MicVocal size={20} /> },
-
 ];
+
 export const resources2 = [
     { to: '#', label: "Best of Reddit", icon: <Rocket size={20} /> },
     { to: '#', label: "Best of Reddit in Portug...", icon: <Languages size={20} /> },
     { to: '#', label: "Best of Reddit in German", icon: <Languages size={20} /> },
 ];
+
 export const resources3 = [
     { to: '#', label: "Reddit Rules", icon: <BookOpenText size={20} /> },
     { to: '#', label: "Privacy Policy", icon: <BookOpenText size={20} /> },

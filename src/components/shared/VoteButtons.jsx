@@ -1,17 +1,47 @@
 import { useState } from 'react';
 import { ArrowBigUp, ArrowBigDown } from 'lucide-react';
+import api from '../../utils/api';
+import { useAuthStore } from '../../store/authstore';
+import { usePostStore } from '../../store/postStore'
 
-export default function VoteButtons({ votes }) {
+
+export default function VoteButtons({ votes, targetId, targetType }) {
   const [count, setCount] = useState(votes);
   const [userVote, setUserVote] = useState(0); // 1 = up, -1 = down, 0 = none
+  const { fetchPosts } = usePostStore();
+  const { user } = useAuthStore();
 
-  const handleVote = (direction) => {
+
+  const handleVote = async (direction) => {
+    if (!user) return; // not logged in
+
+    // Update UI optimistically first
     if (userVote === direction) {
       setCount(count - direction);
       setUserVote(0);
     } else {
       setCount(count - userVote + direction);
       setUserVote(direction);
+    }
+
+    // Then call the API
+    try {
+      await api.post('/vote', {
+        targetId,
+        targetType,
+        value: direction
+      });
+      // await fetchPosts(); // refresh vote count from database
+    } catch (error) {
+      console.error('Vote failed:', error.message);
+
+      if (userVote === direction) {
+        setCount(count + direction);
+        setUserVote(direction);
+      } else {
+        setCount(count + userVote - direction);
+        setUserVote(userVote);
+      }
     }
   };
 

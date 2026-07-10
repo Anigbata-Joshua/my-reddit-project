@@ -8,7 +8,7 @@ import {
 } from 'lucide-react';
 import Avatar from '../shared/Avatar';
 
-export default function UserProfileDropdown() {
+export default function ProfileDropdown() {
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef(null);
     const { user, logout } = useAuthStore();

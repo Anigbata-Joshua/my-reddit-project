@@ -1,20 +1,17 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useAuthStore } from '../store/authstore';
-import {
-    ChevronDown, Image, Video, Link, Bold, Italic, Strikethrough,
-    Code, List, ListOrdered, Quote, Heading1, Sparkles, Smile, AlignLeft
-} from 'lucide-react';
+import { ChevronDown, Image, Video, Link, Bold, Italic, Strikethrough, Code, List, ListOrdered, Quote, Heading1, Sparkles, Smile, AlignLeft} from 'lucide-react';
 import { useCommunityStore } from '../store/communityStore';
-
 import api from '../utils/api';
 import { data, useNavigate } from 'react-router-dom';
+
 
 export default function CreatePostPage() {
     const { user } = useAuthStore();
     const [title, setTitle] = useState('');
     const [error, setError] = useState('');
     const [body, setBody] = useState('');
-    const [selectedTarget, setSelectedTarget] = useState(`u/${user?.username || 'Ajbrandy22'}`);
+    const [selectedTarget, setSelectedTarget] = useState(`u/${user?.username}`);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const dropdownRef = useRef(null);
     const [communityId, setCommunityId] = useState('');

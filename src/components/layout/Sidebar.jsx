@@ -1,12 +1,14 @@
 import { Link, useLocation, NavLink } from 'react-router-dom';
 import { ChevronDown, Menu, X } from 'lucide-react';
-import { useCommunityStore } from '../../store/communityStore'; 
+import { useCommunityStore } from '../../store/communityStore';
 import { sidebarLinks, resources, resources2, resources3 } from '../../data/links';
 import { useEffect, useState } from 'react';
+import CreateCommunityModal from '../../pages/CreateCommunity';
 
 export default function Sidebar() {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
+  const [isCommunityModalOpen, setIsCommunityModalOpen] = useState(false);
 
   // Toggle states for collapsible sections
   const [showCommunities, setShowCommunities] = useState(true);
@@ -14,16 +16,15 @@ export default function Sidebar() {
   const [showExplore, setShowExplore] = useState(true);
   const [showPolicies, setShowPolicies] = useState(true);
 
-
   const { communities, fetchCommunities } = useCommunityStore();
 
-useEffect(() => {
+  useEffect(() => {
     fetchCommunities();
-}, []);
+  }, []);
 
   // Checks active status 
   const linkClass = (active) =>
-    `flex items-center gap-3 px-3 py-2 rounded-full text-sm font-medium hover:bg-black/5 transition-colors ${active ? 'bg-black/5 font-bold text-black' : 'text-gray-700'
+    `flex items-center gap-3 px-3 py-2 rounded-full text-sm font-medium hover:bg-black/5 transition-colors w-full text-left ${active ? 'bg-black/5 font-bold text-black' : 'text-gray-700'
     }`;
 
   // Shared subheader styling with chevron rotation animation
@@ -58,16 +59,35 @@ useEffect(() => {
 
         {/* Primary Navigation */}
         <nav className="mb-4 pt-14 md:pt-0 flex flex-col gap-0.5">
-          {sidebarLinks.map(({ to, icon, label }) => (
-            <NavLink
-              key={to}
-              to={to}
-              onClick={() => setIsOpen(false)}
-              className={({ isActive }) => linkClass(isActive)}
-            >
-              {icon} {label}
-            </NavLink>
-          ))}
+          {sidebarLinks.map((link) => {
+            // Check if link item is our custom modal configuration object
+            if (link.isModalTrigger) {
+              return (
+                <button
+                  key={link.label}
+                  onClick={() => {
+                    setIsOpen(false);              // Close mobile slideout drawer
+                    setIsCommunityModalOpen(true); // Fire up creation panel modal layout overlay
+                  }}
+                  className={linkClass(false)}
+                >
+                  {link.icon} {link.label}
+                </button>
+              );
+            }
+
+            // Fallback rendering standard navigation paths
+            return (
+              <NavLink
+                key={link.to}
+                to={link.to}
+                onClick={() => setIsOpen(false)}
+                className={({ isActive }) => linkClass(isActive)}
+              >
+                {link.icon} {link.label}
+              </NavLink>
+            );
+          })}
         </nav>
 
         {/* Communities Section */}
@@ -102,7 +122,7 @@ useEffect(() => {
           </div>
         </div>
 
-        {/* SECTION 3: Resources Section */}
+        {/* Resources Section */}
         <div className="mb-4 flex flex-col">
           <button
             onClick={() => setShowResources(!showResources)}
@@ -129,13 +149,13 @@ useEffect(() => {
           </div>
         </div>
 
-        {/* SECTION 4: Explore (Best of Reddit) */}
+        {/* Explore Section */}
         <div className="mb-4 flex flex-col">
           <button
             onClick={() => setShowExplore(!showExplore)}
             className={subheaderClass}
           >
-            <span className=''>Explore</span>
+            <span>Explore</span>
             <ChevronDown size={14} className={`transform transition-transform duration-200 ${showExplore ? '' : '-rotate-180'}`} />
           </button>
 
@@ -156,7 +176,7 @@ useEffect(() => {
           </div>
         </div>
 
-        {/*Terms & Policies */}
+        {/* Terms & Policies */}
         <div className="mb-4 flex flex-col">
           <button
             onClick={() => setShowPolicies(!showPolicies)}
@@ -182,12 +202,20 @@ useEffect(() => {
             </div>
           </div>
         </div>
-      <footer className="mt-auto pt-4">
-        <span className="text-[10px] text-gray-500 tracking-wide block">
-          Reddit, Inc. © 2026. All rights reserved.
-        </span>
-      </footer>
+
+        <footer className="mt-auto pt-4">
+          <span className="text-[10px] text-gray-500 tracking-wide block">
+            Reddit, Inc. © 2026. All rights reserved.
+          </span>
+        </footer>
       </aside>
+
+      {/* Renders modal inline wrapper without splitting document tree layout hierarchies */}
+      <CreateCommunityModal
+        isOpen={isCommunityModalOpen}
+        onClose={() => setIsCommunityModalOpen(false)}
+        onCreate={() => setIsCommunityModalOpen(false)}
+      />
     </>
   );
 }
