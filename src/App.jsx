@@ -13,10 +13,11 @@ import ProtectedRoute from './layout/ProtectedRoute';
 import NotFound from './shared/NotFound';
 import CreatePost from './features/posts/pages/CreatePostPage';
 import SearchPage from './features/search/pages/SearchPage';
+import RecentPostsSidebar from './features/home/components/RecentPostsSidebar';
 
 
 function App() {
-  const homeRightSidebar = null;
+  const homeRightSidebar = <RecentPostsSidebar />;
 
   return (
     <Routes>
