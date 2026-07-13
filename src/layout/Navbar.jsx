@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Sparkles, Bell, SquarePlus, MessageCircleMore } from 'lucide-react';
 import logo from "../assets/images.jpg";
-import ProfileDropdown from '../features/profile/components/ProfileDropdown';
+import ProfileDropdown from '../features/navbar/components/ProfileDropdown';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { uploadAvatar } from '../features/profile/utils/avatarUpload';

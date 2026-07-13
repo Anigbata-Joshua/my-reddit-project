@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Eye, Plus, SlidersHorizontal } from 'lucide-react';
+import { Eye, Plus, SlidersHorizontal, User2Icon } from 'lucide-react';
 
 export default function ProfileHeader({
     user,
@@ -26,7 +26,7 @@ export default function ProfileHeader({
                             <img src={user.avatar} alt="avatar" className="h-full w-full object-cover" />
                         ) : (
                             <div className="flex h-full w-full items-center justify-center bg-linear-to-br from-gray-200 to-gray-100 text-xl">
-                                🤖
+                                <User2Icon />
                             </div>
                         )}
                         {uploadingAvatar ? (

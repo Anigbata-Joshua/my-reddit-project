@@ -1,6 +1,6 @@
 import React from 'react';
 import { formatDistanceToNow } from 'date-fns';
-import { Share2, Eye, Shirt, Shield, Plus, User } from 'lucide-react';
+import { Share2, Eye, Shirt, Shield, Plus, User, User2 } from 'lucide-react';
 
 export default function ProfileSidebar({ user, userPostsLength, createdAt }) {
     return (
@@ -15,7 +15,7 @@ export default function ProfileSidebar({ user, userPostsLength, createdAt }) {
                             {user?.avatar ? (
                                 <img src={user.avatar} alt="avatar" className="h-full w-full object-cover" />
                             ) : (
-                                <div className="flex h-full w-full items-center justify-center bg-gray-100 text-xl">🤖</div>
+                                <div className="flex h-full w-full items-center justify-center bg-gray-100 text-xl"><User2/></div>
                             )}
                         </div>
                     </div>
