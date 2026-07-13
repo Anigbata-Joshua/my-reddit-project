@@ -1,4 +1,4 @@
-import api from '../utils/api';
+import api from '../services/api';
 import { create } from 'zustand';
 
 export const useCommunityStore = create((set) => ({

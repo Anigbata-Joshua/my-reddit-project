@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import api from '../utils/api';
+import api from '../services/api';
 
 // Safe parse wrapper to protect against corrupted string crashes
 const getStoredUser = () => {
@@ -23,14 +23,14 @@ export const useAuthStore = create((set) => ({
         try {
             const response = await api.post('/auth/register', { username, email, password });
             const payload = response.data.data;
-            
+
             // Extract cleanly: extract nested user object if it exists, otherwise fallback to root payload
             const userData = payload.user ? payload.user : payload;
             const tokenStr = payload.token;
 
             localStorage.setItem('token', tokenStr);
             localStorage.setItem('user', JSON.stringify(userData));
-            
+
             set({ loading: false, user: userData });
             return { success: true, data: response.data };
 
@@ -55,7 +55,7 @@ export const useAuthStore = create((set) => ({
 
             localStorage.setItem('token', tokenStr);
             localStorage.setItem('user', JSON.stringify(userData));
-            
+
             set({ loading: false, user: userData });
             return { success: true, data: userData };
 
@@ -64,6 +64,14 @@ export const useAuthStore = create((set) => ({
             set({ loading: false, error: errMsg });
             return { success: false, error: errMsg };
         }
+    },
+
+    updateUser: (updatedData) => {
+        set((state) => {
+            const updated = { ...state.user, ...updatedData };
+            localStorage.setItem('user', JSON.stringify(updated));
+            return { user: updated };
+        });
     },
 
     // Log Out Sequence

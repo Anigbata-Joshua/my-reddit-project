@@ -1,20 +1,21 @@
 import { Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import PostPage from './pages/PostPage';
-import CommunityPage from './pages/CommunityPage';
-import LoginPage from './pages/LoginPage';
-import Profile from './pages/Profile';
-import Layout from './components/layout/Layout';
-import Popular from './pages/Popular';
-import News from './pages/News';
-import Explore from './pages/Explore';
-import CreateCommunity from './pages/CreateCommunity';
-import ProtectedRoute from './components/route/ProtectedRoute';
-import NotFound from './pages/NotFound';
-import CreatePost from './pages/CreatePostPage';
+import Home from './features/home/pages/HomePage';
+import PostPage from './features/posts/pages/PostPage';
+import CommunityPage from './features/community/pages/CommunityPage';
+import LoginPage from './features/auth/LoginPage';
+import Profile from './features/profile/pages/ProfilePage';
+import Layout from './layout/Layout';
+import Popular from './features/explore/pages/PopularPage';
+import News from './features/explore/pages/NewsPage';
+import Explore from './features/explore/pages/ExplorePage';
+import CreateCommunity from './features/community/pages/CreateCommunityPage';
+import ProtectedRoute from './layout/ProtectedRoute';
+import NotFound from './shared/NotFound';
+import CreatePost from './features/posts/pages/CreatePostPage';
+import SearchPage from './features/search/pages/SearchPage';
+
 
 function App() {
-  // Build the home page sidebar content layout piece safely
   const homeRightSidebar = null;
 
   return (
@@ -36,6 +37,7 @@ function App() {
         <Route path="/login" element={<LoginPage initialMode="login" />} />
         <Route path="/signup" element={<LoginPage initialMode="signup" />} />
         <Route path="/profile" element={<ProtectedRoute>   <Profile /> </ProtectedRoute>} />
+        <Route path="/search" element={<SearchPage />} />
         <Route path="*" element={<NotFound />} /></Route>
     </Routes>
   );
