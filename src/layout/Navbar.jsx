@@ -4,6 +4,7 @@ import logo from "../assets/images.jpg";
 import ProfileDropdown from '../features/profile/components/ProfileDropdown';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { uploadAvatar } from '../features/profile/utils/avatarUpload';
 
 export default function Navbar() {
 

@@ -24,7 +24,6 @@ export const useAuthStore = create((set) => ({
             const response = await api.post('/auth/register', { username, email, password });
             const payload = response.data.data;
 
-            // Extract cleanly: extract nested user object if it exists, otherwise fallback to root payload
             const userData = payload.user ? payload.user : payload;
             const tokenStr = payload.token;
 
@@ -41,23 +40,29 @@ export const useAuthStore = create((set) => ({
         }
     },
 
-    // Log In Sequence
+  // Log In Sequence
+   // Log In Sequence
     login: async (email, password) => {
         set({ loading: true, error: null });
 
         try {
             const response = await api.post('/auth/login', { email, password });
             const payload = response.data.data;
+            const userData = payload.user || payload;
 
-            // Extract cleanly: extract nested user object if it exists, otherwise fallback to root payload
-            const userData = payload.user ? payload.user : payload;
-            const tokenStr = payload.token;
+            const formattedUser = {
+                userId: userData.userId,
+                username: userData.username,
+                email: userData.email,
+                avatar: userData.avatar,
+                createdAt: userData.createdAt,
+            };
 
-            localStorage.setItem('token', tokenStr);
-            localStorage.setItem('user', JSON.stringify(userData));
+            localStorage.setItem('token', payload.token);
+            localStorage.setItem('user', JSON.stringify(formattedUser));
 
-            set({ loading: false, user: userData });
-            return { success: true, data: userData };
+            set({ loading: false, user: formattedUser });
+            return { success: true, data: formattedUser };
 
         } catch (error) {
             const errMsg = error.response?.data?.message || "Login failed";

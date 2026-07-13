@@ -4,6 +4,7 @@ import PostList from '../../posts/components/PostList';
 import { usePostStore } from '../../../store/postStore';
 import { useCommunityStore } from '../../../store/communityStore';
 import { useAuthStore } from '../../../store/authstore';
+import CommunityHeader from '../components/CommunityHeader';
 
 export default function CommunityPage() {
   const { communityName } = useParams();
@@ -26,42 +27,20 @@ export default function CommunityPage() {
 
   return (
     <>
-      <div className="bg-white border border-gray-200 rounded-lg p-4 mb-4">
-        <div className="flex items-center justify-between mb-2">
-          <h1 className="m-0 text-2xl text-gray-900">r/{communityName}</h1>
+      <CommunityHeader
+        communityName={communityName}
+        community={community}
+        hasJoined={hasJoined}
+        user={user}
+        onJoin={() => joinCommunity(communityName)}
+        onLeave={() => leaveCommunity(communityName)}
+      />
 
-          {user && (
-            hasJoined ? (
-              <button
-                onClick={() => leaveCommunity(communityName)}
-                className="px-4 py-1.5 bg-gray-100 text-gray-700 text-xs font-bold rounded-full hover:bg-red-50 hover:text-red-600 cursor-pointer"
-              >
-                Leave
-              </button>
-            ) : (
-              <button
-                onClick={() => joinCommunity(communityName)}
-                className="px-4 py-1.5 bg-orange-600 text-white text-xs font-bold rounded-full hover:bg-orange-700 cursor-pointer"
-              >
-                Join
-              </button>
-            )
-          )}
-        </div>
-        {community?.description && (
-          <p className="text-sm text-gray-700 mt-2">{community.description}</p>
-        )}
-        <p className="text-xs text-gray-500 mt-2">
-          {community?.memberCount === 1 ? '1 member' : `${community?.memberCount?.toLocaleString() || 0} members`}        </p>
-      </div>
-
-      {loading && communityPosts.length === 0 ? (
-        <p className="text-gray-500 p-4">Loading posts…</p>
-      ) : communityPosts.length === 0 ? (
-        <p className="text-gray-500 p-4">No posts in this community yet.</p>
-      ) : (
-        <PostList posts={communityPosts} />
-      )}
+      <PostList
+        posts={communityPosts}
+        isLoading={loading && communityPosts.length === 0}
+        emptyMessage="No posts in this community yet."
+      />
     </>
   );
 }

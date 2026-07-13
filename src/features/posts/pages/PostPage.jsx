@@ -7,6 +7,7 @@ import { useAuthStore } from '../../../store/authstore';
 import PostDetail from '../components/PostDetail';
 import CommentForm from '../components/CommentForm';
 import CommentList from '../components/CommentList';
+import PostPageSkeleton from '../components/PostPageSkeleton';
 
 export default function PostPage() {
   const { postId } = useParams();
@@ -24,8 +25,8 @@ export default function PostPage() {
   const post = posts.find((p) => p.postId === postId);
   const communityName = post ? getCommunityName(communities, post.communityId) : '';
 
-  if (loading && !post) return <p className="text-gray-900 p-4 font-medium">Loading post…</p>;
-  if (!post) return <p className="text-gray-900 p-4 font-medium">Post not found.</p>;
+  if (loading && !post) return <PostPageSkeleton />;
+  if (!post) return <div className="rounded-2xl border border-gray-200 bg-white p-6 text-sm font-medium text-gray-700">Post not found.</div>;
 
   const handleAddComment = async (body) => {
     await addComment(postId, body);

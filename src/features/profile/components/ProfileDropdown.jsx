@@ -43,7 +43,9 @@ export default function ProfileDropdown() {
                 className="group relative flex items-center gap-2 p-1.5 rounded-full cursor-pointer hover:bg-gray-100 transition-colors duration-200 text-black focus:outline-none"
             >
                 {user ? (
-                    <Avatar className="w-9 h-9 rounded-full object-cover" />
+                    <div className="h-9 w-9 overflow-hidden rounded-full">
+                        <Avatar src={user?.avatar} alt={user?.username ? `${user.username} avatar` : 'avatar'} className="h-9 w-9 rounded-full" />
+                    </div>
                 ) : (
                     <div className="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 border border-gray-200">
                         <User size={18} />
@@ -72,7 +74,9 @@ export default function ProfileDropdown() {
                                 onClick={() => setIsOpen(false)}
                                 className="flex items-center gap-3 p-4 hover:bg-gray-100 cursor-pointer transition-colors"
                             >
-                                <Avatar className="w-10 h-10 rounded-full object-cover shrink-0" />
+                                <div className="h-10 w-10 shrink-0 overflow-hidden rounded-full">
+                                    <Avatar src={user?.avatar} alt={user?.username ? `${user.username} avatar` : 'avatar'} className="h-10 w-10 rounded-full" />
+                                </div>
                                 <div className="min-w-0">
                                     <div className="text-sm font-semibold text-black truncate">View Profile</div>
                                     <div className="text-xs text-gray-500 truncate">u/{user?.username}</div>

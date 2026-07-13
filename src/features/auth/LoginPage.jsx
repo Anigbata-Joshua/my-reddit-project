@@ -1,9 +1,5 @@
-import AuthForm from "./AuthForm";
+import AuthForm from './AuthForm';
 
 export default function LoginPage({ initialMode = 'login' }) {
-  return (
-    <div>
-      <AuthForm initialMode={initialMode} />
-    </div>
-  );
+  return <AuthForm initialMode={initialMode} />;
 }
