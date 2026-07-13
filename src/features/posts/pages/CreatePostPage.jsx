@@ -4,6 +4,7 @@ import { ChevronDown, Image, Video, Link, Bold, Italic, Strikethrough, Code, Lis
 import { useCommunityStore } from '../../../store/communityStore';
 import api from '../../../services/api';
 import { useNavigate } from 'react-router-dom';
+import ImageUpload from '../components/ImageUpload';
 
 
 export default function CreatePostPage() {
@@ -60,10 +61,14 @@ export default function CreatePostPage() {
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];
-        if (file) {
-            setImage(file);
-            setImagePreview(URL.createObjectURL(file));
+        if (!file) {
+            setImage(null);
+            setImagePreview(null);
+            return;
         }
+
+        setImage(file);
+        setImagePreview(URL.createObjectURL(file));
     };
 
     return (
@@ -151,7 +156,7 @@ export default function CreatePostPage() {
                                 className="w-full text-sm placeholder-gray-400 text-black border-none focus:ring-0 p-0 focus:outline-none resize-none leading-relaxed"
                             />
 
-                            {/* Fixed Floating Rich-text Formatting Toolbar */}
+                            {/*  Toolbar */}
                             <div className="flex items-center justify-between border border-gray-200 rounded-xl px-3 py-2 bg-white shadow-sm">
                                 <div className="flex items-center gap-1 overflow-x-auto scrollbar-none">
                                     <ToolbarButton icon={<Link size={15} />} label="Insert link" />
@@ -180,25 +185,15 @@ export default function CreatePostPage() {
                                     <ToolbarButton icon={<AlignLeft size={15} />} label="Extended options" />
                                 </div>
                             </div>
-                            <input
-                                type="file"
-                                accept="image/jpeg,image/png,image/webp"
-                                ref={fileInputRef}
-                                onChange={handleImageChange}
-                                className="hidden"
+                            <ImageUpload
+                                imagePreview={imagePreview}
+                                onImageSelect={handleImageChange}
+                                onRemove={() => {
+                                    setImage(null);
+                                    setImagePreview(null);
+                                }}
+                                inputRef={fileInputRef}
                             />
-                            {imagePreview && (
-                                <div className="relative mt-2">
-                                    <img src={imagePreview} alt="preview" className="w-full rounded-lg max-h-64 object-cover" />
-                                    <button
-                                        type="button"
-                                        onClick={() => { setImage(null); setImagePreview(null); }}
-                                        className="absolute top-2 right-2 bg-black/50 text-white rounded-full p-1 text-xs"
-                                    >
-                                        ✕
-                                    </button>
-                                </div>
-                            )}
                         </div>
 
                         {/* Bottom Actions Row: Save Draft & Publish */}
