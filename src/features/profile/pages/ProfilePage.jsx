@@ -52,7 +52,7 @@ export default function ProfilePage() {
                       key={postItem.postId}
                       post={postItem}
                       communityName={communityName}
-                      username={user?.username || 'Ajbrandy22'}
+                      username={user?.username || ''}
                       isOpen={openDropdownId === postItem.postId}
                       onToggle={toggleDropdown}
                       menuRef={dropdownRef}

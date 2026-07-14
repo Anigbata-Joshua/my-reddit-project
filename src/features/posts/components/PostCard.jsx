@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { MessageCircle, MessageSquare, ScreenShareIcon, Share2, Share2Icon } from 'lucide-react';
+import { MessageCircle, Share2Icon } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
 import VoteButtons from '../../../shared/VoteButtons';
 import { useCommunityStore, getCommunityName } from '../../../store/communityStore';
@@ -60,7 +60,6 @@ export default function PostCard({ post }) {
             />
           </div>
         )}
-        {/* {console.log('post image:', post.image)} */}
 
         <div className="flex items-center gap-2">
           <VoteButtons votes={post.voteCount}

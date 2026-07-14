@@ -5,7 +5,9 @@ import Input from './components/Input';
 import { useAuthForm } from './hooks/useAuthForm';
 
 export default function AuthForm({ initialMode = 'login' }) {
-  const { isLogin, setIsLogin, isOpen, setIsOpen, formData, handleChange, handleSubmit, successMessage, setSuccessMessage, loading, error, isFormValid } = useAuthForm(initialMode);
+  const { isLogin, setIsLogin, isOpen, setIsOpen,
+    formData, handleChange, handleSubmit, successMessage, setSuccessMessage,
+    loading, error, isFormValid } = useAuthForm(initialMode);
 
   if (!isOpen) return null;
 
@@ -72,8 +74,8 @@ export default function AuthForm({ initialMode = 'login' }) {
           type="submit"
           disabled={loading || !isFormValid}
           className={`mt-20 flex w-full items-center justify-center rounded-full h-12 font-semibold text-sm transition-all ${isFormValid && !loading
-              ? 'bg-orange-600 text-white hover:bg-orange-700 cursor-pointer shadow-md'
-              : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+            ? 'bg-orange-600 text-white hover:bg-orange-700 cursor-pointer shadow-md'
+            : 'bg-gray-100 text-gray-400 cursor-not-allowed'
             }`}
         >
           {loading ? 'Please wait...' : 'Continue'}

@@ -5,14 +5,13 @@ export const usePostStore = create((set) => ({
     posts: [],
     loading: false,
     error: null,
-
-    //Register
+    //Fetch all post
     fetchPosts: async () => {
         set({ loading: true, error: null });
 
         //Api Call
         try {
-            const allPosts = await api.get('/post');;
+            const allPosts = await api.get('/post');
             set({ loading: false, posts: allPosts.data.data });
             return { success: true, data: allPosts.data };
         } catch (error) {
