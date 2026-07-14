@@ -1,20 +1,22 @@
 import api from '../services/api';
 import { create } from 'zustand';
 
-export const useCommunityStore = create((set) => ({
+export const useCommunityStore = create((set, get) => ({
     communities: [],
     loading: false,
     error: null,
     fetched: false,
+    lastFetched: null,
 
     fetchCommunities: async () => {
+        const now = Date.now();
+        if (get().lastFetched && now - get().lastFetched < 60000) return;
+
         set({ loading: true, error: null });
         try {
             const response = await api.get('/community');
-            // Backend response shape: { success, message, data: [...] .
             const list = response.data?.data ?? response.data ?? [];
-
-            set({ loading: false, communities: list, fetched: true });
+            set({ loading: false, communities: list, fetched: true, lastFetched: now });
             return { success: true, data: list };
         } catch (error) {
             const errMsg = error.response?.data?.message || "Failed to fetch communities";

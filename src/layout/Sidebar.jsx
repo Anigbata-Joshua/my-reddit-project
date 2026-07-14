@@ -4,6 +4,7 @@ import { useCommunityStore } from '../store/communityStore';
 import { sidebarLinks, resources, resources2, resources3 } from '../layout/links';
 import { useEffect, useState } from 'react';
 import CreateCommunityModal from '../features/community/pages/CreateCommunityPage';
+import SidebarSection from './SidebarSection';
 
 export default function Sidebar() {
   const location = useLocation();
@@ -12,9 +13,7 @@ export default function Sidebar() {
 
   // Toggle states for collapsible sections
   const [showCommunities, setShowCommunities] = useState(true);
-  const [showResources, setShowResources] = useState(true);
-  const [showExplore, setShowExplore] = useState(true);
-  const [showPolicies, setShowPolicies] = useState(true);
+
 
   const { communities, fetchCommunities } = useCommunityStore();
 
@@ -66,8 +65,8 @@ export default function Sidebar() {
                 <button
                   key={link.label}
                   onClick={() => {
-                    setIsOpen(false);              // Close mobile slideout drawer
-                    setIsCommunityModalOpen(true); // Fire up creation panel modal layout overlay
+                    setIsOpen(false);
+                    setIsCommunityModalOpen(true);
                   }}
                   className={linkClass(false)}
                 >
@@ -123,85 +122,13 @@ export default function Sidebar() {
         </div>
 
         {/* Resources Section */}
-        <div className="mb-4 flex flex-col">
-          <button
-            onClick={() => setShowResources(!showResources)}
-            className={subheaderClass}
-          >
-            <span>Resources</span>
-            <ChevronDown size={14} className={`transform transition-transform duration-200 ${showResources ? '' : '-rotate-180'}`} />
-          </button>
-
-          <div className={`grid transition-all duration-200 ease-in-out ${showResources ? 'grid-rows-[1fr] opacity-100 mt-0.5' : 'grid-rows-[0fr] opacity-0 pointer-events-none'}`}>
-            <div className="overflow-hidden flex flex-col gap-0.5">
-              {resources.map(({ to, label, icon }) => (
-                <Link
-                  key={label}
-                  to={to}
-                  onClick={() => setIsOpen(false)}
-                  className={linkClass(location.pathname === to)}
-                >
-                  {icon}
-                  <span className="truncate">{label}</span>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </div>
+        <SidebarSection title="Resources" items={resources} onItemClick={() => setIsOpen(false)} />
 
         {/* Explore Section */}
-        <div className="mb-4 flex flex-col">
-          <button
-            onClick={() => setShowExplore(!showExplore)}
-            className={subheaderClass}
-          >
-            <span>Explore</span>
-            <ChevronDown size={14} className={`transform transition-transform duration-200 ${showExplore ? '' : '-rotate-180'}`} />
-          </button>
-
-          <div className={`grid transition-all duration-200 ease-in-out ${showExplore ? 'grid-rows-[1fr] opacity-100 mt-0.5' : 'grid-rows-[0fr] opacity-0 pointer-events-none'}`}>
-            <div className="overflow-hidden flex flex-col gap-0.5">
-              {resources2.map(({ to, label, icon }) => (
-                <Link
-                  key={label}
-                  to={to}
-                  onClick={() => setIsOpen(false)}
-                  className={linkClass(location.pathname === to)}
-                >
-                  {icon}
-                  <span className="truncate">{label}</span>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </div>
+        <SidebarSection title="Explore" items={resources2} onItemClick={() => setIsOpen(false)} />
 
         {/* Terms & Policies */}
-        <div className="mb-4 flex flex-col">
-          <button
-            onClick={() => setShowPolicies(!showPolicies)}
-            className={subheaderClass}
-          >
-            <span>Terms & Policies</span>
-            <ChevronDown size={14} className={`transform transition-transform duration-200 ${showPolicies ? '' : '-rotate-180'}`} />
-          </button>
-
-          <div className={`grid transition-all duration-200 ease-in-out ${showPolicies ? 'grid-rows-[1fr] opacity-100 mt-0.5' : 'grid-rows-[0fr] opacity-0 pointer-events-none'}`}>
-            <div className="overflow-hidden flex flex-col gap-0.5">
-              {resources3.map(({ to, label, icon }) => (
-                <Link
-                  key={label}
-                  to={to}
-                  onClick={() => setIsOpen(false)}
-                  className={linkClass(location.pathname === to)}
-                >
-                  {icon}
-                  <span className="truncate">{label}</span>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </div>
+        <SidebarSection title="Terms & Policies" items={resources3} onItemClick={() => setIsOpen(false)} />
 
         <footer className="mt-auto pt-4">
           <span className="text-[10px] text-gray-500 tracking-wide block">
