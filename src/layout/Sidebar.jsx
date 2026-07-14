@@ -50,11 +50,11 @@ export default function Sidebar() {
 
       {/* Sidebar Container */}
       <aside className={`
-        w-60 shrink-0 p-2 border-r border-gray-200 bg-white
-        md:sticky md:top-14 md:h-[calc(100vh-3.5rem)] md:translate-x-0 md:z-0 md:block
-        fixed top-0 left-0 h-full z-45 transition-transform duration-300 ease-in-out
-        ${isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
-        overflow-y-auto`}>
+    w-60 shrink-0 p-2 border-r border-gray-200 bg-white
+    md:sticky md:top-14 md:h-[calc(100vh-3.5rem)] md:translate-x-0 md:z-0 md:block
+    fixed top-0 left-0 h-full z-45 transition-transform duration-300 ease-in-out
+    ${isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
+    overflow-y-auto`}>
 
         {/* Primary Navigation */}
         <nav className="mb-4 pt-14 md:pt-0 flex flex-col gap-0.5">
@@ -129,8 +129,7 @@ export default function Sidebar() {
 
         {/* Terms & Policies */}
         <SidebarSection title="Terms & Policies" items={resources3} onItemClick={() => setIsOpen(false)} />
-
-        <footer className="mt-auto pt-4">
+        <footer className="sticky bottom-0 bg-white pt-4 pb-2 border-t border-gray-100">
           <span className="text-[10px] text-gray-500 tracking-wide block">
             Reddit, Inc. © 2026. All rights reserved.
           </span>
