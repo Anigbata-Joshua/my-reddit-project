@@ -31,13 +31,13 @@ function App() {
         <Route path="/popular" element={<Popular />} />
         <Route path="/news" element={<News />} />
         <Route path="/explore" element={<Explore />} />
-        <Route path="/create-community" element={<CreateCommunity />} />
+        <Route path="/create-community" element={<ProtectedRoute><CreateCommunity /></ProtectedRoute>} />
         <Route path="/post/:postId" element={<PostPage />} />
         <Route path="/r/:communityName" element={<CommunityPage />} />
-        <Route path="/createpost" element={<CreatePost />} />
+        <Route path="/createpost" element={<ProtectedRoute><CreatePost /></ProtectedRoute>} />
         <Route path="/login" element={<LoginPage initialMode="login" />} />
         <Route path="/signup" element={<LoginPage initialMode="signup" />} />
-        <Route path="/profile" element={<ProtectedRoute>   <Profile /> </ProtectedRoute>} />
+        <Route path="/profile" element={<ProtectedRoute><Profile /> </ProtectedRoute>} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="*" element={<NotFound />} /></Route>
     </Routes>

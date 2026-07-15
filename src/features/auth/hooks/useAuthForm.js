@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuthStore } from '../../../store/authstore';
 
 export function useAuthForm(initialMode = 'login') {
@@ -13,6 +13,7 @@ export function useAuthForm(initialMode = 'login') {
   const register = useAuthStore((s) => s.register);
   const loading = useAuthStore((s) => s.loading);
   const error = useAuthStore((s) => s.error);
+  const location = useLocation();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -23,14 +24,11 @@ export function useAuthForm(initialMode = 'login') {
     event.preventDefault();
     setSuccessMessage('');
 
-    if (isLogin) {
-      const result = await login(formData.email, formData.password);
-      if (result?.success) {
-        setSuccessMessage(`Welcome back ${result.data.username}`);
-        setFormData({ username: '', email: '', password: '' });
-        navigate('/');
-      }
-      return;
+    if (result?.success) {
+      setSuccessMessage(`Welcome back ${result.data.username}`);
+      setFormData({ username: '', email: '', password: '' });
+      const from = location.state?.from?.pathname || '/';
+      navigate(from, { replace: true });
     }
 
     const result = await register(formData.username, formData.email, formData.password);
