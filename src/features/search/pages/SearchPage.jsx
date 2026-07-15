@@ -2,13 +2,15 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import PostList from '../../posts/components/PostList';
 import api from '../../../services/api';
+import Loader from '../../../shared/Loader';
+
 
 export default function SearchPage() {
     const [searchParams] = useSearchParams();
     const query = searchParams.get('q');
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [deleteError, setDeleteError] = useState('');
+    const [error, setError] = useState('');
 
     useEffect(() => {
         if (!query) return;

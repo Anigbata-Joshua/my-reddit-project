@@ -6,6 +6,7 @@ import { useCommunityStore, getCommunityName } from '../../../store/communitySto
 import { useAuthStore } from '../../../store/authstore';
 import { usePostStore } from '../../../store/postStore';
 import api from '../../../services/api';
+import { useState } from 'react';
 
 
 export default function PostCard({ post }) {
