@@ -9,7 +9,7 @@ import api from '../../../services/api';
 
 
 export default function PostCard({ post }) {
-  // The backend sometimes returns `postId`
+  // The backend  returns `postId`
   const linkId = post.postId;
   const body = post.body ?? post.content;
   const communities = useCommunityStore((s) => s.communities);
