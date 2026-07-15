@@ -16,6 +16,7 @@ export default function PostCard({ post }) {
   const communityName = getCommunityName(communities, post.communityId);
   const { user } = useAuthStore();
   const { fetchPosts } = usePostStore();
+  const [deleteError, setDeleteError] = useState('');
 
 
   const handleDelete = async () => {
@@ -24,7 +25,7 @@ export default function PostCard({ post }) {
       await api.delete(`/post/${post.postId}`);
       await fetchPosts();
     } catch (error) {
-      console.error('Delete failed:', error.message);
+      setDeleteError('Failed to delete post. Please try again.');
     }
   };
 

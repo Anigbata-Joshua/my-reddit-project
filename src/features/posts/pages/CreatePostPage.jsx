@@ -42,8 +42,7 @@ export default function CreatePostPage() {
             });
             navigate('/');
         } catch (error) {
-            console.error(error.message);
-            setError('Failed to create post');
+            setError('Failed to create post. Please try again.');
         }
     };
 

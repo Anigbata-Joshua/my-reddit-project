@@ -8,6 +8,7 @@ export default function SearchPage() {
     const query = searchParams.get('q');
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [deleteError, setDeleteError] = useState('');
 
     useEffect(() => {
         if (!query) return;
@@ -17,7 +18,7 @@ export default function SearchPage() {
                 const response = await api.get(`/post?search=${encodeURIComponent(query)}`);
                 setResults(response.data.data);
             } catch (error) {
-                console.error(error.message);
+                setError('Search failed. Please try again.');
             } finally {
                 setLoading(false);
             }
@@ -35,7 +36,9 @@ export default function SearchPage() {
             </div>
 
             {loading ? (
-                <p className="text-gray-500 p-4">Searching...</p>
+                <Loader />
+            ) : error ? (
+                <p className="text-sm text-red-500 p-4">{error}</p>
             ) : results.length === 0 ? (
                 <p className="text-gray-500 p-4">No posts found for "{query}"</p>
             ) : (

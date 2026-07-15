@@ -61,7 +61,6 @@ export function useProfilePage() {
             setUploadSuccess('Profile photo updated.');
             event.target.value = '';
         } catch (error) {
-            console.error('Avatar upload failed:', error.message);
             setUploadError(error.message || 'We could not upload your photo right now. Please try again.');
         } finally {
             setUploadingAvatar(false);

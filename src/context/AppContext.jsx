@@ -29,10 +29,9 @@ export const AppProvider = ({ children }) => {
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(user));
       return response.data;
-      
+
     } catch (error) {
-      console.error(`Login failed: ${error.message}`);
-      throw error; 
+      throw error;
     }
   };
 
@@ -50,7 +49,6 @@ export const AppProvider = ({ children }) => {
       return response.data.data;
 
     } catch (error) {
-      console.error(`Registration failed: ${error.message}`);
       throw error;
     }
   };

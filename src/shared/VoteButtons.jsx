@@ -33,8 +33,6 @@ export default function VoteButtons({ votes, targetId, targetType }) {
       });
       // await fetchPosts(); // refresh vote count from database
     } catch (error) {
-      console.error('Vote failed:', error.message);
-
       if (userVote === direction) {
         setCount(count + direction);
         setUserVote(direction);
