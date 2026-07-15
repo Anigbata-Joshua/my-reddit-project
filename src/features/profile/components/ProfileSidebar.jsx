@@ -21,7 +21,7 @@ export default function ProfileSidebar({ user, userPostsLength, createdAt }) {
                     </div>
 
                     <div>
-                        <h2 className="text-sm font-bold text-gray-900">{user?.username || 'Ajbrandy22'}</h2>
+                        <h2 className="text-sm font-bold text-gray-900">{user?.username || ''}</h2>
                         <button className="mt-2 flex items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1.5 text-xs font-bold text-gray-700 transition-colors hover:bg-gray-200">
                             <Share2 size={12} /> Share
                         </button>
