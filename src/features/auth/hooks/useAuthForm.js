@@ -24,39 +24,42 @@ export function useAuthForm(initialMode = 'login') {
     event.preventDefault();
     setSuccessMessage('');
 
-    if (result?.success) {
-      setSuccessMessage(`Welcome back ${result.data.username}`);
-      setFormData({ username: '', email: '', password: '' });
-      const from = location.state?.from?.pathname || '/';
-      navigate(from, { replace: true });
+    if (isLogin) {
+      const result = await login(formData.email, formData.password);
+      if (result?.success) {
+        setSuccessMessage(`Welcome back ${result.data.username}`);
+        setFormData({ username: '', email: '', password: '' });
+        const from = location.state?.from?.pathname || '/';
+        navigate(from, { replace: true });
+      }
     }
 
-    const result = await register(formData.username, formData.email, formData.password);
-    if (result?.success) {
-      setSuccessMessage('Registration Successful');
-      setIsLogin(true);
-      setFormData({ username: '', email: '', password: '' });
-      navigate('/login');
-    }
-  };
+      const result = await register(formData.username, formData.email, formData.password);
+      if (result?.success) {
+        setSuccessMessage('Registration Successful');
+        setIsLogin(true);
+        setFormData({ username: '', email: '', password: '' });
+        navigate('/login');
+      }
+    };
 
-  const isFormValid = useMemo(
-    () => (isLogin ? formData.email && formData.password : formData.username && formData.email && formData.password),
-    [formData, isLogin],
-  );
+    const isFormValid = useMemo(
+      () => (isLogin ? formData.email && formData.password : formData.username && formData.email && formData.password),
+      [formData, isLogin],
+    );
 
-  return {
-    isLogin,
-    setIsLogin,
-    isOpen,
-    setIsOpen,
-    formData,
-    handleChange,
-    handleSubmit,
-    successMessage,
-    setSuccessMessage,
-    loading,
-    error,
-    isFormValid,
-  };
-}
+    return {
+      isLogin,
+      setIsLogin,
+      isOpen,
+      setIsOpen,
+      formData,
+      handleChange,
+      handleSubmit,
+      successMessage,
+      setSuccessMessage,
+      loading,
+      error,
+      isFormValid,
+    };
+  }
