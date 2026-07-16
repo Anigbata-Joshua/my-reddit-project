@@ -14,39 +14,31 @@ export default function VoteButtons({ votes, targetId, targetType }) {
   const navigate = useNavigate();
 
 
-  const handleVote = async (direction) => {
+const handleVote = async (direction) => {
     if (!user) {
-      navigate('/login')
-      return; // not logged in
+        navigate('/login');
+        return;
     }
 
-    // Update UI optimistically first
-    if (userVote === direction) {
-      setCount(count - direction);
-      setUserVote(0);
-    } else {
-      setCount(count - userVote + direction);
-      setUserVote(direction);
-    }
-
-    // Then call the API
     try {
-      await api.post('/vote', {
-        targetId,
-        targetType,
-        value: direction
-      });
-      // await fetchPosts(); // refresh vote count from database
+        const response = await api.post('/vote', {
+            targetId,
+            targetType,
+            value: direction
+        });
+        // Use the real voteCount from the server
+        setCount(response.data.voteCount);
+        
+        // Toggle userVote state
+        if (userVote === direction) {
+            setUserVote(0);
+        } else {
+            setUserVote(direction);
+        }
     } catch (error) {
-      if (userVote === direction) {
-        setCount(count + direction);
-        setUserVote(direction);
-      } else {
-        setCount(count + userVote - direction);
-        setUserVote(userVote);
-      }
+        // silent fail
     }
-  };
+};
 
   const formatCount = (n) => (n >= 1000 ? `${(n / 1000).toFixed(1)}k` : n);
 
