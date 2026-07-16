@@ -1,6 +1,8 @@
 import { Link, useLocation } from 'react-router-dom';
 import { ChevronDown } from 'lucide-react';
 import { useState } from 'react';
+import { getLinkClass, SUBHEADER_CLASS } from '../utils/sidebarStyles';
+
 
 export default function SidebarSection({ title, items, onItemClick }) {
     const location = useLocation();
@@ -13,7 +15,7 @@ export default function SidebarSection({ title, items, onItemClick }) {
 
     return (
         <div className="mb-4 flex flex-col">
-            <button onClick={() => setIsOpen(!isOpen)} className={subheaderClass}>
+            <button onClick={() => setIsOpen(!isOpen)} className={SUBHEADER_CLASS}>
                 <span>{title}</span>
                 <ChevronDown size={14} className={`transform transition-transform duration-200 ${isOpen ? '' : '-rotate-180'}`} />
             </button>
@@ -24,7 +26,7 @@ export default function SidebarSection({ title, items, onItemClick }) {
                             key={label}
                             to={to}
                             onClick={onItemClick}
-                            className={linkClass(location.pathname === to)}
+                            className={getLinkClass(location.pathname === to)}
                         >
                             {icon}
                             <span className="truncate">{label}</span>

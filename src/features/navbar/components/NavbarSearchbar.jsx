@@ -7,13 +7,14 @@ export default function NavbarSearchbar({ searchQuery, onChange, onKeyDown, clas
             <img src={logo} className="w-6 h-auto cursor-pointer" alt="Brand logo" />
             <input
                 type="text"
-                placeholder="Search Reddit"
+                placeholder="Find anything"
                 value={searchQuery}
                 onChange={onChange}
                 onKeyDown={onKeyDown}
                 className="border-none bg-transparent outline-none flex-1 text-sm min-w-0 text-center"
             />
-            <Sparkles size={16} className="shrink-0 text-orange-600 cursor-pointer" />
+            <Sparkles size={16} className="shrink-0 text-orange-600 cursor-pointer " />
+            <span className='text-xs'>Ask</span>
         </div>
     );
 }

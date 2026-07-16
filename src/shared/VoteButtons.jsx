@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function VoteButtons({ votes, targetId, targetType }) {
   const [count, setCount] = useState(votes);
-  const [userVote, setUserVote] = useState(0); // 1 = up, -1 = down, 0 = none
+  const [userVote, setUserVote] = useState(0); 
   const { fetchPosts } = usePostStore();
   const { user } = useAuthStore();
   const navigate = useNavigate();
@@ -36,7 +36,7 @@ const handleVote = async (direction) => {
             setUserVote(direction);
         }
     } catch (error) {
-        // silent fail
+
     }
 };
 
