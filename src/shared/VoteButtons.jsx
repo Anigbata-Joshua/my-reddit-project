@@ -3,6 +3,7 @@ import { ArrowBigUp, ArrowBigDown } from 'lucide-react';
 import api from '../services/api';
 import { useAuthStore } from '../store/authstore';
 import { usePostStore } from '../store/postStore'
+import { useNavigate } from 'react-router-dom';
 
 
 export default function VoteButtons({ votes, targetId, targetType }) {
@@ -10,10 +11,14 @@ export default function VoteButtons({ votes, targetId, targetType }) {
   const [userVote, setUserVote] = useState(0); // 1 = up, -1 = down, 0 = none
   const { fetchPosts } = usePostStore();
   const { user } = useAuthStore();
+  const navigate = useNavigate();
 
 
   const handleVote = async (direction) => {
-    if (!user) return; // not logged in
+    if (!user) {
+      navigate('/login')
+      return; // not logged in
+    }
 
     // Update UI optimistically first
     if (userVote === direction) {

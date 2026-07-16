@@ -7,6 +7,7 @@ import { useAuthStore } from '../../../store/authstore';
 import { usePostStore } from '../../../store/postStore';
 import api from '../../../services/api';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function PostCard({ post }) {
@@ -18,6 +19,7 @@ export default function PostCard({ post }) {
   const { user } = useAuthStore();
   const { fetchPosts } = usePostStore();
   const [deleteError, setDeleteError] = useState('');
+  const navigate = useNavigate();
 
 
   const handleDelete = async () => {
@@ -67,12 +69,12 @@ export default function PostCard({ post }) {
           <VoteButtons votes={post.voteCount}
             targetId={post.postId}
             targetType="post" />
-          <Link
-            to={`/post/${linkId}`}
+          <button
+            onClick={() => user ? navigate(`/post/${linkId}`) : navigate('/login')}
             className="flex items-center gap-1.5 bg-gray-100 rounded-full px-3 py-2 text-xs font-bold text-gray-900 hover:bg-gray-200"
           >
             <MessageCircle size={16} /> {post.commentCount}
-          </Link>
+          </button>
           <button className="flex items-center gap-1.5 bg-gray-100 rounded-full px-3 py-2 text-xs font-bold text-gray-900 hover:bg-gray-200">
             <Share2Icon size={16} />
           </button>
