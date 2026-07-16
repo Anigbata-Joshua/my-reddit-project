@@ -26,7 +26,8 @@ export default function Navbar() {
           searchQuery={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           onKeyDown={handleSearch}
-          className="hidden md:flex flex-1 max-w-xl mx-4"
+          className="hidden md:flex flex-1 max-w-xl mx-4 px-4 py-2 rounded-full border dark:border-orange-400 bg-white text-gray-900
+           placeholder-gray-500 focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-transparent transition-all duration-200 shadow-xs"
         />
 
         <div className="flex items-center gap-1 sm:gap-2 shrink-0">
