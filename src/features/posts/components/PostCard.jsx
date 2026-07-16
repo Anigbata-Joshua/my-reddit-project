@@ -71,7 +71,7 @@ export default function PostCard({ post }) {
             targetType="post" />
           <button
             onClick={() => user ? navigate(`/post/${linkId}`) : navigate('/login')}
-            className="flex items-center gap-1.5 bg-gray-100 rounded-full px-3 py-2 text-xs font-bold text-gray-900 hover:bg-gray-200"
+            className="flex items-center gap-1.5 bg-gray-100 rounded-full px-3 py-2 text-xs font-bold text-gray-900 hover:bg-gray-200 cursor-pointer"
           >
             <MessageCircle size={16} /> {post.commentCount}
           </button>
