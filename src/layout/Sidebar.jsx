@@ -13,6 +13,7 @@ export default function Sidebar() {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [isCommunityModalOpen, setIsCommunityModalOpen] = useState(false);
+  const { createCommunity } = useCommunityStore();
 
   return (
     <>
@@ -53,7 +54,13 @@ export default function Sidebar() {
         </footer>
       </aside>
 
-      <CreateCommunityModal isOpen={isCommunityModalOpen} onClose={() => setIsCommunityModalOpen(false)} onCreate={() => setIsCommunityModalOpen(false)} />
-    </>
+      <CreateCommunityModal
+        isOpen={isCommunityModalOpen}
+        onClose={() => setIsCommunityModalOpen(false)}
+        onCreate={(newCommunity) => {
+          createCommunity(newCommunity);
+          setIsCommunityModalOpen(false);
+        }}
+      />    </>
   );
 }
