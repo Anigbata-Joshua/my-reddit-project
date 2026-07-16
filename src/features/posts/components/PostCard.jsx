@@ -65,13 +65,13 @@ export default function PostCard({ post }) {
           </div>
         )}
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 cursor-pointer">
           <VoteButtons votes={post.voteCount}
             targetId={post.postId}
             targetType="post" />
           <button
             onClick={() => user ? navigate(`/post/${linkId}`) : navigate('/login')}
-            className="flex items-center gap-1.5 bg-gray-100 rounded-full px-3 py-2 text-xs font-bold text-gray-900 hover:bg-gray-200 cursor-pointer"
+            className="flex items-center gap-1.5 bg-gray-100 rounded-full px-3 py-2 text-xs font-bold text-gray-900 hover:bg-gray-200 "
           >
             <MessageCircle size={16} /> {post.commentCount}
           </button>
