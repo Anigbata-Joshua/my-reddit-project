@@ -53,7 +53,7 @@ export default function VoteButtons({ votes, targetId, targetType }) {
   return (
     <div className="flex items-center gap-1 bg-gray-100 rounded-full px-2.5 py-1.5">
       <button
-        className={`p-0.5 rounded hover:bg-black/10 ${userVote === 1 ? 'text-orange-600' : 'text-gray-500'}`}
+        className={`p-0.5 rounded cursor-pointer hover:bg-black/10 ${userVote === 1 ? 'text-orange-600' : 'text-gray-500'}`}
         onClick={() => handleVote(1)}
         aria-label="Upvote"
       >
