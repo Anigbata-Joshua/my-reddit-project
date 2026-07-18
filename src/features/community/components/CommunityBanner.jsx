@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { Plus, MoreHorizontal, Camera } from 'lucide-react';
+import { Plus, MoreHorizontal, Camera, Hash } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 export default function CommunityBanner({
@@ -24,7 +24,9 @@ export default function CommunityBanner({
                         className="w-full h-full object-cover"
                     />
                 ) : (
-                    <div className="w-full h-full bg-gray-200" />
+                    <div className="w-full h-full bg-gradient-to-br from-orange-400 via-rose-400 to-purple-500 flex items-center justify-center">
+                        <Hash size={48} className="text-white/40" strokeWidth={2.5} />
+                    </div>
                 )}
 
                 {/* Upload banner button — only show to logged in users */}
@@ -66,8 +68,8 @@ export default function CommunityBanner({
                         <button
                             onClick={onJoinToggle}
                             className={`px-5 py-2 font-bold text-xs rounded-full transition-all cursor-pointer ${hasJoined
-                                    ? 'border border-gray-300 text-gray-700 hover:bg-gray-100'
-                                    : 'bg-gray-900 hover:bg-black text-white'
+                                ? 'border border-gray-300 text-gray-700 hover:bg-gray-100'
+                                : 'bg-gray-900 hover:bg-black text-white'
                                 }`}
                         >
                             {hasJoined ? 'Joined' : 'Join'}
