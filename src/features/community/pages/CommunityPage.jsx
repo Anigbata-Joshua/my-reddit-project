@@ -1,46 +1,45 @@
-import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+// features/community/pages/CommunityPage.jsx
+import React from 'react';
 import PostList from '../../posts/components/PostList';
-import { usePostStore } from '../../../store/postStore';
-import { useCommunityStore } from '../../../store/communityStore';
-import { useAuthStore } from '../../../store/authstore';
-import CommunityHeader from '../components/CommunityHeader';
+import Loader from '../../../shared/Loader';
+import useCommunityPage from '../hook/useCommunityPage';
+import CommunityBanner from '../components/CommunityBanner';
+import CommunityHighlights from '../components/CommunityHighlights';
+import CommunityAbout from '../components/CommunityAbout';
 
 export default function CommunityPage() {
-  const { communityName } = useParams();
-  const { posts, loading, fetchPosts } = usePostStore();
-  const { communities, fetchCommunities, joinCommunity, leaveCommunity, joinedCommunities } = useCommunityStore();
-  const hasJoined = joinedCommunities.includes(communityName);
-  const { user } = useAuthStore();
-
-  useEffect(() => {
-    fetchPosts();
-    if (communities.length === 0) fetchCommunities();
-  }, [communityName]);
-
-  const community = communities.find((c) => c.name === communityName);
-  const communityId = community?.communityId;
-
-  const communityPosts = communityId
-    ? posts.filter((p) => p.communityId === communityId)
-    : posts.filter((p) => p.communityId === communityName);
+  const { communityName, community, communityPosts, loading, user, hasJoined, handleJoinToggle, handleBannerUpload } = useCommunityPage();
 
   return (
-    <>
-      <CommunityHeader
-        communityName={communityName}
-        community={community}
-        hasJoined={hasJoined}
-        user={user}
-        onJoin={() => joinCommunity(communityName)}
-        onLeave={() => leaveCommunity(communityName)}
-      />
+    <div className="min-h-screen bg-gray-50 flex flex-col font-sans text-gray-900">
 
-      <PostList
-        posts={communityPosts}
-        isLoading={loading && communityPosts.length === 0}
-        emptyMessage="No posts in this community yet."
-      />
-    </>
+      <main className="flex-1 overflow-y-auto">
+        {/* Community Banner */}
+        <CommunityBanner
+          community={community}
+          communityName={communityName}
+          user={user}
+          hasJoined={hasJoined}
+          onJoinToggle={handleJoinToggle}
+          onBannerUpload={handleBannerUpload}
+        />
+
+        <div className="max-w-300 mx-auto px-6 py-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="lg:col-span-2 space-y-4">
+            <CommunityHighlights communityName={communityName} />
+            <PostList posts={communityPosts} />
+            {loading && communityPosts.length === 0 && <Loader />}
+            {!loading && communityPosts.length === 0 && (
+              <p className="text-gray-500 p-4 text-sm">No posts in this community yet.</p>
+            )}
+          </div>
+
+          {/* About community widget */}
+          <CommunityAbout community={community} communityName={communityName} user={user} />
+
+        </div>
+      </main>
+
+    </div>
   );
 }
