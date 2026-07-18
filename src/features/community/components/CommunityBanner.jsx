@@ -16,36 +16,34 @@ export default function CommunityBanner({
     return (
         <div className="bg-white border-b border-gray-200">
             {/* Banner Image */}
-            <div className="relative w-full h-48 md:h-72 bg-gray-200 overflow-hidden group">
-                {community?.banner ? (
-                    <img
-                        src={community.banner}
-                        alt={`${communityName} banner`}
-                        className="w-full h-full object-cover"
-                    />
-                ) : (
-                    <div className="w-full h-full bg-gradient-to-br from-orange-400 via-rose-400 to-purple-500 flex items-center justify-center">
-                        <Hash size={48} className="text-white/40" strokeWidth={2.5} />
-                    </div>
-                )}
+{/* Banner Image */}
+<div className="relative w-full h-48 md:h-72 bg-gray-200 overflow-hidden group">
+    <img
+        src={
+            community?.banner ||
+            'https://images.unsplash.com/photo-1758812097288-ecafda0b9aa2?fm=jpg&q=80&w=1600&h=400&fit=crop&auto=format'
+        }
+        alt={community?.banner ? `${communityName} banner` : 'Default community banner'}
+        className="w-full h-full object-cover"
+    />
 
-                {/* Upload banner button — only show to logged in users */}
-                {user && (
-                    <button
-                        onClick={() => bannerInputRef.current.click()}
-                        className="absolute bottom-2 right-2 flex items-center gap-1.5 px-3 py-1.5 bg-black/50 hover:bg-black/70 text-white text-xs font-bold rounded-full opacity-0 group-hover:opacity-100 transition-all cursor-pointer"
-                    >
-                        <Camera size={12} /> Change Banner
-                    </button>
-                )}
-                <input
-                    type="file"
-                    ref={bannerInputRef}
-                    onChange={onBannerUpload}
-                    accept="image/jpeg,image/png,image/webp"
-                    className="hidden"
-                />
-            </div>
+    {/* Upload banner button — only show to logged in users */}
+    {user && (
+        <button
+            onClick={() => bannerInputRef.current.click()}
+            className="absolute bottom-2 right-2 flex items-center gap-1.5 px-3 py-1.5 bg-black/50 hover:bg-black/70 text-white text-xs font-bold rounded-full opacity-0 group-hover:opacity-100 transition-all cursor-pointer"
+        >
+            <Camera size={12} /> Change Banner
+        </button>
+    )}
+    <input
+        type="file"
+        ref={bannerInputRef}
+        onChange={onBannerUpload}
+        accept="image/jpeg,image/png,image/webp"
+        className="hidden"
+    />
+</div>
 
             {/* Community Info Row */}
             <div className="max-w-[1200px] mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
