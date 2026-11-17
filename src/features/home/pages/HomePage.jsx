@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { SquarePlus } from 'lucide-react';
 import { usePostStore } from '../../../store/postStore';
 import { useCommunityStore } from '../../../store/communityStore';
 import PostList from '../../posts/components/PostList';
@@ -33,10 +35,17 @@ export default function Home() {
       {loading ? (
         <Loader />
       ) : posts.length === 0 ? (
-        <div className="flex flex-col items-center justify-center py-20 text-center">
+        <div className="flex flex-col items-center justify-center py-20 text-center bg-white border border-gray-200 rounded-lg p-6">
           <div className="text-4xl mb-4">👽</div>
           <h2 className="text-lg font-bold text-gray-900 mb-1">No posts yet</h2>
-          <p className="text-sm text-gray-500">Be the first to post something in a community.</p>
+          <p className="text-sm text-gray-500 mb-6">Be the first to post something in a community.</p>
+          <Link
+            to="/createpost"
+            className="flex items-center gap-2 rounded-full bg-orange-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-orange-700"
+          >
+            <SquarePlus size={18} />
+            <span>Create Post</span>
+          </Link>
         </div>
       ) : (
         <PostList posts={posts} />

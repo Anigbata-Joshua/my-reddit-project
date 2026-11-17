@@ -1,5 +1,7 @@
 // features/community/pages/CommunityPage.jsx
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { SquarePlus } from 'lucide-react';
 import PostList from '../../posts/components/PostList';
 import Loader from '../../../shared/Loader';
 import useCommunityPage from '../hook/useCommunityPage';
@@ -30,7 +32,18 @@ export default function CommunityPage() {
             <PostList posts={communityPosts} />
             {loading && communityPosts.length === 0 && <Loader />}
             {!loading && communityPosts.length === 0 && (
-              <p className="text-gray-500 p-4 text-sm">No posts in this community yet.</p>
+              <div className="flex flex-col items-center justify-center py-16 text-center bg-white border border-gray-200 rounded-lg p-6">
+                <div className="text-4xl mb-3">👽</div>
+                <h3 className="text-base font-bold text-gray-900 mb-1">No posts in r/{communityName} yet</h3>
+                <p className="text-xs text-gray-500 mb-5">Be the first to share something with this community.</p>
+                <Link
+                  to="/createpost"
+                  className="flex items-center gap-2 rounded-full bg-orange-600 px-5 py-2.5 text-xs font-semibold text-white shadow-sm transition hover:bg-orange-700"
+                >
+                  <SquarePlus size={16} />
+                  <span>Create Post</span>
+                </Link>
+              </div>
             )}
           </div>
 
