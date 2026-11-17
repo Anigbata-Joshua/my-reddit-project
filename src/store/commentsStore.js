@@ -22,7 +22,7 @@ export const useCommentStore = create((set, get) => ({
             set({ loading: false, comments: data.data });
             return { success: true, data: data.data };
         } catch (error) {
-            const errMsg = error.response?.data?.message || "Failed to fetch comments";
+            const errMsg = error.response?.data?.message || "Failed to fetch comments. Retry";
             set({ loading: false, error: errMsg });
             return { success: false, error: errMsg };
         }
