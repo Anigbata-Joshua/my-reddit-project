@@ -30,5 +30,7 @@ export const usePostStore = create((set, get) => ({
     }
 },
 
+    invalidateCache: () => set({ lastFetched: null }),
+
 }))
 

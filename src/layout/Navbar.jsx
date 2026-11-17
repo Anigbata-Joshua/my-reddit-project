@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Bell, SquarePlus, MessageCircleMore } from 'lucide-react';
 import { useState } from 'react';
 import ProfileDropdown from '../features/profiledropdown/components/ProfileDropdown';

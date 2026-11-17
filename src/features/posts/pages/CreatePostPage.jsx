@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useAuthStore } from '../../../store/authstore';
 import { useCommunityStore } from '../../../store/communityStore';
+import { usePostStore } from '../../../store/postStore';
 import api from '../../../services/api';
 import { useNavigate } from 'react-router-dom';
 import CreatePostTopSection from '../components/CreatePostTopSection';
@@ -40,6 +41,7 @@ export default function CreatePostPage() {
             await api.post('/post', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' }
             });
+            usePostStore.getState().invalidateCache();
             navigate('/');
         } catch (error) {
             setError('Failed to create post. Please try again.');

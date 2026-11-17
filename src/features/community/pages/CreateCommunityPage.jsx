@@ -8,11 +8,19 @@ import FormInput from '../components/FormInput';
 import CommunityPreview from '../components/CommunityPreview';
 import CreateCommunityFooter from '../components/CreateCommunityFooter';
 
-export default function CreateCommunityModal({ isOpen, onClose }) {
+export default function CreateCommunityModal({ isOpen = true, onClose }) {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const { createCommunity } = useCommunityStore();
   const navigate = useNavigate();
+
+  const handleClose = () => {
+    if (onClose) {
+      onClose();
+    } else {
+      navigate(-1);
+    }
+  };
 
   if (!isOpen) return null;
 
@@ -22,7 +30,7 @@ export default function CreateCommunityModal({ isOpen, onClose }) {
     if (!isFormValid) return;
     const result = await createCommunity(name, description);
     if (result.success) {
-      onClose();
+      handleClose();
       navigate(`/r/${name}`);
     }
   };
@@ -37,7 +45,7 @@ export default function CreateCommunityModal({ isOpen, onClose }) {
         {/* Header Close Button Row */}
         <div className="flex justify-end pt-4 px-4">
           <button
-            onClick={onClose}
+            onClick={handleClose}
             className="p-1.5 hover:bg-gray-100 rounded-full text-gray-500 transition-colors"
           >
             <X size={20} />
@@ -77,7 +85,7 @@ export default function CreateCommunityModal({ isOpen, onClose }) {
 
         {/* Modular Footer */}
         <CreateCommunityFooter
-          onClose={onClose}
+          onClose={handleClose}
           onCreate={handleCreate}
           isFormValid={isFormValid}
         />

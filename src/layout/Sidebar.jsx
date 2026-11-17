@@ -1,8 +1,8 @@
-import { Link, useLocation, NavLink } from 'react-router-dom';
-import { ChevronDown, Menu, X } from 'lucide-react';
+import { NavLink } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
 import { useCommunityStore } from '../store/communityStore';
 import { sidebarLinks, resources, resources2, resources3 } from '../layout/links';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import CreateCommunityModal from '../features/community/pages/CreateCommunityPage';
 import SidebarSection from './SidebarSection';
 import SidebarPrimaryNav from './SiderbarPrimaryNav';
@@ -10,7 +10,6 @@ import SidebarPrimaryNav from './SiderbarPrimaryNav';
 import { getLinkClass } from '../utils/sidebarStyles';
 
 export default function Sidebar() {
-  const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [isCommunityModalOpen, setIsCommunityModalOpen] = useState(false);
   const { createCommunity } = useCommunityStore();

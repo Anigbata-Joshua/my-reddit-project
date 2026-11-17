@@ -32,7 +32,11 @@ export default function PostDetail({ post, communityName }) {
         <span>·</span>
         <span>Posted by u/{post.author}</span>
         <span>·</span>
-        <span>{post.createdAt ? formatDistanceToNow(new Date(post.createdAt)) : 'some time'} ago</span>
+        <span>
+          {post.createdAt && !isNaN(new Date(post.createdAt).getTime())
+            ? `${formatDistanceToNow(new Date(post.createdAt))} ago`
+            : 'recently'}
+        </span>
       </div>
 
       {/* Post Content */}

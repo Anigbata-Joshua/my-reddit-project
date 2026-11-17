@@ -44,7 +44,11 @@ export default function PostCard({ post }) {
         <span>·</span>
         <span>Posted by u/{post.author}</span>
         <span>·</span>
-        <span>{formatDistanceToNow(new Date(post.createdAt))} ago</span>
+        <span>
+          {post.createdAt && !isNaN(new Date(post.createdAt).getTime())
+            ? `${formatDistanceToNow(new Date(post.createdAt))} ago`
+            : 'recently'}
+        </span>
       </div>
 
       <div className="px-4 pt-1 pb-3">

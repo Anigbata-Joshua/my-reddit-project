@@ -12,7 +12,11 @@ export default function RecentPostsSidebar() {
 
     const threeDaysAgo = subDays(new Date(), 3);
     const recentPosts = [...(posts || [])]
-        .filter((post) => new Date(post.createdAt) >= threeDaysAgo)
+        .filter((post) => {
+            if (!post.createdAt) return false;
+            const d = new Date(post.createdAt);
+            return !isNaN(d.getTime()) && d >= threeDaysAgo;
+        })
         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
         .slice(0, 5);
 
@@ -37,7 +41,9 @@ export default function RecentPostsSidebar() {
                                 <div className="min-w-0 flex-1">
                                     <h3 className="text-sm font-semibold text-gray-900 truncate">{post.title}</h3>
                                     <p className="text-xs text-gray-500 mt-1">
-                                        {formatDistanceToNow(new Date(post.createdAt))} ago
+                                        {post.createdAt && !isNaN(new Date(post.createdAt).getTime())
+                                            ? `${formatDistanceToNow(new Date(post.createdAt))} ago`
+                                            : 'recently'}
                                     </p>
                                 </div>
                                 {post.image && (

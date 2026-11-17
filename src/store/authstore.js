@@ -22,50 +22,62 @@ export const useAuthStore = create((set) => ({
 
         try {
             const response = await api.post('/auth/register', { username, email, password });
-            const payload = response.data.data;
+            const payload = response.data?.data || response.data;
 
-            const userData = payload.user ? payload.user : payload;
-            const tokenStr = payload.token;
+            const userData = payload?.user || payload;
+            const tokenStr = payload?.token || response.data?.token;
 
-            localStorage.setItem('token', tokenStr);
-            localStorage.setItem('user', JSON.stringify(userData));
+            const formattedUser = {
+                userId: userData?.userId,
+                username: userData?.username,
+                email: userData?.email,
+                avatar: userData?.avatar,
+                createdAt: userData?.createdAt || new Date().toISOString(),
+            };
 
-            set({ loading: false, user: userData });
-            return { success: true, data: response.data };
+            if (tokenStr) {
+                localStorage.setItem('token', tokenStr);
+            }
+            localStorage.setItem('user', JSON.stringify(formattedUser));
+
+            set({ loading: false, user: formattedUser, error: null });
+            return { success: true, data: formattedUser };
 
         } catch (error) {
-            const errMsg = error.response?.data?.message || "Registration failed";
+            const errMsg = error.response?.data?.message || error.message || "Registration failed";
             set({ loading: false, error: errMsg });
             return { success: false, error: errMsg };
         }
     },
 
-  // Log In Sequence
-   // Log In Sequence
+    // Log In Sequence
     login: async (email, password) => {
         set({ loading: true, error: null });
 
         try {
             const response = await api.post('/auth/login', { email, password });
-            const payload = response.data.data;
-            const userData = payload.user || payload;
+            const payload = response.data?.data || response.data;
+            const userData = payload?.user || payload;
 
             const formattedUser = {
-                userId: userData.userId,
-                username: userData.username,
-                email: userData.email,
-                avatar: userData.avatar,
-                createdAt: userData.createdAt,
+                userId: userData?.userId,
+                username: userData?.username,
+                email: userData?.email,
+                avatar: userData?.avatar,
+                createdAt: userData?.createdAt,
             };
 
-            localStorage.setItem('token', payload.token);
+            const tokenStr = payload?.token || response.data?.token;
+            if (tokenStr) {
+                localStorage.setItem('token', tokenStr);
+            }
             localStorage.setItem('user', JSON.stringify(formattedUser));
 
-            set({ loading: false, user: formattedUser });
+            set({ loading: false, user: formattedUser, error: null });
             return { success: true, data: formattedUser };
 
         } catch (error) {
-            const errMsg = error.response?.data?.message || "Login failed";
+            const errMsg = error.response?.data?.message || error.message || "Login failed";
             set({ loading: false, error: errMsg });
             return { success: false, error: errMsg };
         }
@@ -84,5 +96,7 @@ export const useAuthStore = create((set) => ({
         localStorage.removeItem('token');
         localStorage.removeItem('user');
         set({ user: null, error: null });
-    }
+    },
+
+    clearError: () => set({ error: null })
 }));

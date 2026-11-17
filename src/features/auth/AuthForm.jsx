@@ -5,8 +5,8 @@ import Input from './components/Input';
 import { useAuthForm } from './hooks/useAuthForm';
 
 export default function AuthForm({ initialMode = 'login' }) {
-  const { isLogin, setIsLogin, isOpen, setIsOpen,
-    formData, handleChange, handleSubmit, successMessage, setSuccessMessage,
+  const { isLogin, toggleMode, isOpen, setIsOpen,
+    formData, handleChange, handleSubmit, successMessage,
     loading, error, isFormValid } = useAuthForm(initialMode);
 
   if (!isOpen) return null;
@@ -63,7 +63,7 @@ export default function AuthForm({ initialMode = 'login' }) {
           {isLogin ? 'New to Reddit?' : 'Already a redditor?'} {' '}
           <button
             type="button"
-            onClick={() => { setIsLogin(!isLogin); setSuccessMessage(''); }}
+            onClick={toggleMode}
             className="font-semibold text-blue-600 hover:underline cursor-pointer"
           >
             {isLogin ? 'Sign Up' : 'Log In'}

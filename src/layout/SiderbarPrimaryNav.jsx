@@ -6,9 +6,8 @@ import {useCommunityStore} from '../store/communityStore'
 
 export default function SidebarPrimaryNav() {
     const [showCommunities, setShowCommunities] = useState(true);
-    const [isOpen, setIsOpen] = useState(false);
-      const { communities, fetchCommunities } = useCommunityStore();
-
+    const { communities } = useCommunityStore();
+    const location = useLocation();
 
     const linkClass = (active) => `flex items-center gap-3 px-3 py-2 rounded-full text-sm font-medium hover:bg-black/5 transition-colors w-full text-left
    ${active ? 'bg-black/5 font-bold text-black' : 'text-gray-700'}`;
@@ -27,8 +26,8 @@ export default function SidebarPrimaryNav() {
                         {communities.map((c) => {
                             const path = `/r/${c.name}`;
                             return (
-                                <Link key={c.communityId} to={path} onClick={() => setIsOpen(false)} className={linkClass(location.pathname === path)}>
-                                    <span className="w-5 h-5 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold shrink-0">{c.name[0].toUpperCase()}</span>
+                                <Link key={c.communityId} to={path} className={linkClass(location.pathname === path)}>
+                                    <span className="w-5 h-5 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold shrink-0">{c.name[0]?.toUpperCase() || 'R'}</span>
                                     <span className="truncate">{c.name}</span>
                                 </Link>
                             );
@@ -37,5 +36,5 @@ export default function SidebarPrimaryNav() {
                 </div>
             </div>
         </>
-    )
+    );
 }

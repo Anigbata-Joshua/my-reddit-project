@@ -16,10 +16,11 @@ export default function SearchPage() {
         if (!query) return;
         const fetchResults = async () => {
             setLoading(true);
+            setError('');
             try {
                 const response = await api.get(`/post?search=${encodeURIComponent(query)}`);
-                setResults(response.data.data);
-            } catch (error) {
+                setResults(response.data?.data || []);
+            } catch (err) {
                 setError('Search failed. Please try again.');
             } finally {
                 setLoading(false);
