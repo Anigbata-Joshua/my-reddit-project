@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: 'https://blog-backend-app-1.onrender.com',
+    baseURL: 'https://reddit-backend-app.onrender.com/api',
     headers: { 'Content-Type': 'application/json' }
 });
 
